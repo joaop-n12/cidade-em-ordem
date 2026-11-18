@@ -1,0 +1,16 @@
+
+=== status_veiculo (1 registros) ===
+veiculo | status | atualizado_em
+caminhao-01 | online | 2026-11-18T18:52:46
+
+=== leituras (4 registros) ===
+id | recebido_em | veiculo | seq | tipo | lat | lon | impacto_g | distancia_cm | profundidade_cm | severidade
+1 | 2026-11-18T18:52:47 | caminhao-01 | 1 | telemetria | -23.5398 | -46.5771 | 1.01 | 40.1 | 0.1 | None
+2 | 2026-11-18T18:52:49 | caminhao-01 | 2 | possivel_buraco | -23.5402 | -46.5763 | 2.2 | 46.0 | 6.0 | moderada
+3 | 2026-11-18T18:52:52 | caminhao-01 | 3 | possivel_buraco | -23.54021 | -46.57632 | 2.4 | 46.5 | 6.5 | moderada
+4 | 2026-11-18T18:52:54 | caminhao-01 | 4 | possivel_buraco | -23.5431 | -46.5712 | 3.4 | 53.0 | 13.0 | alta
+
+=== buracos (2 registros) ===
+id | lat | lon | primeira_deteccao | ultima_deteccao | passagens | maior_impacto_g | maior_profundidade_cm | status
+1 | -23.5402 | -46.5763 | 2026-11-18T18:52:49 | 2026-11-18T18:52:52 | 2 | 2.4 | 6.5 | confirmado
+2 | -23.5431 | -46.5712 | 2026-11-18T18:52:54 | 2026-11-18T18:52:54 | 1 | 3.4 | 13.0 | confirmado

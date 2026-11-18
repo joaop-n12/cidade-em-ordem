@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "author": "Cidade em Ordem - GS 2026.2",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-mpu6050", "id": "imu1", "top": -120, "left": 160, "attrs": {} },
+    { "type": "wokwi-hc-sr04", "id": "ultrasonic1", "top": 140, "left": 200, "attrs": { "distance": "40" } },
+    { "type": "wokwi-led", "id": "led1", "top": -60, "left": -130, "attrs": { "color": "red", "label": "ALERTA" } },
+    { "type": "wokwi-led", "id": "led2", "top": -60, "left": -80, "attrs": { "color": "green", "label": "MQTT" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": 40, "left": -150, "rotate": 90, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 40, "left": -100, "rotate": 90, "attrs": { "value": "220" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "imu1:VCC", "esp:3V3", "red", [] ],
+    [ "imu1:GND", "esp:GND.2", "black", [] ],
+    [ "imu1:SCL", "esp:22", "green", [] ],
+    [ "imu1:SDA", "esp:21", "blue", [] ],
+    [ "ultrasonic1:VCC", "esp:5V", "red", [] ],
+    [ "ultrasonic1:GND", "esp:GND.3", "black", [] ],
+    [ "ultrasonic1:TRIG", "esp:5", "orange", [] ],
+    [ "ultrasonic1:ECHO", "esp:18", "purple", [] ],
+    [ "led1:A", "r1:1", "red", [] ],
+    [ "r1:2", "esp:26", "red", [] ],
+    [ "led1:C", "esp:GND.1", "black", [] ],
+    [ "led2:A", "r2:1", "green", [] ],
+    [ "r2:2", "esp:27", "green", [] ],
+    [ "led2:C", "esp:GND.1", "black", [] ]
+  ],
+  "dependencies": {}
+}

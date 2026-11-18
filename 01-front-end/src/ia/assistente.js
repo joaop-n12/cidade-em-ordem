@@ -11,9 +11,10 @@ const BASE = [
     termos: ['indenização', 'indenizacao', 'pneu', 'roda', 'carro', 'estragou', 'danificou', 'prejuízo', 'prejuizo', 'ressarcimento'],
     resposta:
       'Se o seu veículo foi danificado por um buraco em via pública, a Constituição (art. 37, § 6º) prevê que o poder público responde pelos danos causados. ' +
-      'Guarde fotos do local e do dano, orçamentos ou notas do conserto e, se possível, o boletim de ocorrência. ' +
-      'Primeiro faça o pedido administrativo à prefeitura; se não houver acordo, procure o Juizado Especial da Fazenda Pública ou a Defensoria Pública.',
-    fonte: 'Constituição Federal, art. 37, § 6º',
+      'Em São Paulo, o pedido é gratuito pelo Portal 156, no serviço "Reparação de Danos - Solicitar indenização por danos materiais". ' +
+      'Tire fotos do buraco, do veículo e da via, anote endereço, data e horário, e junte a nota fiscal do conserto ou três orçamentos. ' +
+      'Se você usar o seguro do carro, a prefeitura cobre apenas a franquia. Se o pedido for negado, procure o Juizado Especial da Fazenda Pública ou a Defensoria Pública.',
+    fonte: 'Constituição Federal, art. 37, § 6º; Portal SP156 - Reparação de Danos',
   },
   {
     id: 'prazo',

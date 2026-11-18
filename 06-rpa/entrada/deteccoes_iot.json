@@ -1,0 +1,26 @@
+[
+  {
+    "id_origem": "iot-1",
+    "fonte": "sensor",
+    "tipo": "buraco",
+    "lat": -23.5402,
+    "lon": -46.5763,
+    "detectado_em": "2026-11-18T18:52:52",
+    "passagens": 2,
+    "impacto_g": 2.4,
+    "profundidade_cm": 6.5,
+    "status_iot": "confirmado"
+  },
+  {
+    "id_origem": "iot-2",
+    "fonte": "sensor",
+    "tipo": "buraco",
+    "lat": -23.5431,
+    "lon": -46.5712,
+    "detectado_em": "2026-11-18T18:52:54",
+    "passagens": 1,
+    "impacto_g": 3.4,
+    "profundidade_cm": 13.0,
+    "status_iot": "confirmado"
+  }
+]

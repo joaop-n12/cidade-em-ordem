@@ -1,0 +1,21 @@
+2026-11-18 18:52:41,037 [INFO] Conectando a broker.hivemq.com:1883 ...
+2026-11-18 18:52:41,475 [INFO] Conectado ao broker broker.hivemq.com (código Success)
+2026-11-18 18:52:41,475 [INFO] Assinando cidadeemordem/+/{telemetria,evento,status}
+2026-11-18 18:52:46,481 [INFO] Veículo caminhao-01 está online
+2026-11-18 18:52:47,314 [INFO] [telemetria] caminhao-01 | 1.01 g | prof 0.1 cm
+2026-11-18 18:52:49,815 [INFO] [evento] caminhao-01 | 2.20 g | prof 6.0 cm
+2026-11-18 18:52:49,816 [INFO] Buraco #1 registrado como suspeito (passagens=1)
+2026-11-18 18:52:52,314 [INFO] [evento] caminhao-01 | 2.40 g | prof 6.5 cm
+2026-11-18 18:52:52,315 [WARNING] BURACO #1 CONFIRMADO em (-23.54021, -46.57632) - 2.40 g, 6.5 cm, 2 passagem(ns)
+2026-11-18 18:52:52,315 [INFO] Telegram não configurado - alerta apenas no log: Cidade em Ordem: buraco confirmado #1
+Local: https://maps.google.com/?q=-23.54021,-46.57632
+Impacto 2.4 g | profundidade 6 cm | 2 passagem(ns).
+Ordem de serviço será aberta pelo robô.
+2026-11-18 18:52:54,820 [INFO] [evento] caminhao-01 | 3.40 g | prof 13.0 cm
+2026-11-18 18:52:54,821 [WARNING] BURACO #2 CONFIRMADO em (-23.54310, -46.57120) - 3.40 g, 13.0 cm, 1 passagem(ns)
+2026-11-18 18:52:54,821 [INFO] Telegram não configurado - alerta apenas no log: Cidade em Ordem: buraco confirmado #2
+Local: https://maps.google.com/?q=-23.5431,-46.5712
+Impacto 3.4 g | profundidade 13 cm | 1 passagem(ns).
+Ordem de serviço será aberta pelo robô.
+2026-11-18 18:52:57,325 [ERROR] Mensagem inválida descartada em cidadeemordem/caminhao-01/telemetria: b'{leitura quebrada'
+2026-11-18 18:52:59,813 [ERROR] Leitura rejeitada (impacto fora da faixa do sensor): {'veiculo': 'caminhao-01', 'seq': 5, 'tipo': 'telemetria', 'lat': -23.54, 'lon': -46.57, 'impacto_g': 99.0, 'distancia_cm': 40.0, 'profundidade_cm': 0.0, 'uptime_ms': 15000}
