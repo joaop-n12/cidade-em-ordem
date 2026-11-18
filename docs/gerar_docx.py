@@ -174,6 +174,14 @@ def converter(md_path, docx_path, abnt):
             while i < len(linhas) and linhas[i].startswith("|"):
                 bloco.append(linhas[i]); i += 1
             tabela(doc, bloco); continue
+        elif re.match(r"!\[[^\]]*\]\(([^)]+)\)", l.strip()):
+            m = re.match(r"!\[([^\]]*)\]\(([^)]+)\)", l.strip())
+            img = md_path.parent / m.group(2)
+            if img.exists():
+                doc.add_picture(str(img), width=Cm(15))
+                doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
+            cap = doc.add_paragraph(); cap.alignment = WD_ALIGN_PARAGRAPH.CENTER; cap.paragraph_format.first_line_indent = Cm(0)
+            r = cap.add_run(m.group(1) if img.exists() else f"[inserir imagem: {m.group(2)}]"); r.font.size = Pt(10)
         elif re.match(r"\[(QUADRO|FIGURA) \d+", l):
             p = doc.add_paragraph(); p.alignment = WD_ALIGN_PARAGRAPH.CENTER; p.paragraph_format.first_line_indent = Cm(0)
             r = p.add_run(l.strip("[] ")); r.bold = True; r.font.size = Pt(10)

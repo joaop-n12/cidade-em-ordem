@@ -120,7 +120,7 @@ Num lote de teste rotulado com 10 buracos e 4 falsos alarmes, o robô acertou as
 
 Investigamos, por simulação no Falstad, se um memristor poderia guardar o registro de impactos repetidos no mesmo trecho de rua. Um pulso positivo representa um impacto e reduz a resistência. Sem tensão, a resistência deve permanecer. Um pulso negativo representaria o reparo e devolve a resistência ao valor alto.
 
-⬜ Resumir aqui o que foi observado na simulação (valores de resistência nas duas condições de estímulo e se o estado se manteve após retirar a tensão).
+Na simulação, o memristor começou em 16 kΩ. Com +1 V, a resistência caiu para 100 Ω e ficou em 100 Ω quando a tensão foi retirada, o que mostra a memória sem energia. Com +3 V, o estado final foi o mesmo, e só a corrente mudou (15 mA contra 5 mA), porque o dispositivo já estava no valor mínimo. Um pulso de −3 V voltou a resistência para 16 kΩ, e esse valor também se manteve sem tensão. Com os parâmetros padrão, a troca acontece em menos de um milissegundo, então o memristor funcionou como um marcador de "impacto registrado ou não", e não como um contador de impactos.
 
 A ideia para o projeto é ter um contador de impactos que não perde o registro se o equipamento do caminhão desligar. Isso continua no nível de estudo: não foi construído hardware.
 
