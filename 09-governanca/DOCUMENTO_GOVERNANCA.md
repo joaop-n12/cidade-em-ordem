@@ -187,7 +187,7 @@ A prefeitura poderia acompanhar a solução com os seguintes indicadores:
 # 4 LINKS
 
 - Vídeo de demonstração (YouTube, não listado): ⬜
-- Repositório GitHub: ⬜
+- Repositório GitHub: https://github.com/joaop-n12/cidade-em-ordem
 
 # REFERÊNCIAS
 
