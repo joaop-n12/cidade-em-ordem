@@ -79,8 +79,15 @@ que foi projetada para fazer, não a precisão em campo. Os erros reais devem ap
 dois buracos a menos de 25 m (seriam agrupados num só) ou um buraco visto em só um quadro com confiança
 média (iria para revisão humana). O desempenho da câmera em si é medido na pasta `03-visao-computacional`.
 
-**Execução real (online):** com as detecções do IoT, o robô consultou o Nominatim (endereços reais na Vila
-Azevedo/Tatuapé) e o Open-Meteo (16,3 mm de chuva previstos), que elevou a prioridade. Ver `saida/execucao.log`.
+**Execução real integrada (online):** o robô leu 64 detecções da câmera (modelo YOLO11n treinado na disciplina
+de Visão Computacional) e 2 do sensor IoT, agrupou tudo em **5 ocorrências**, consultou o Nominatim (endereços
+reais na Vila Azevedo/Tatuapé) e o Open-Meteo (16,3 mm de chuva previstos). **2 ocorrências foram confirmadas por
+câmera e sensor (prioridade Crítica)** e 3 só pela câmera em vários quadros (prioridade Média). Ver `saida/execucao.log`
+e `saida/ordens_servico.xlsx`.
+
+**Limite observado:** no vídeo simulado, os quadros ficam a cerca de 17 m um do outro, e o DBSCAN encadeou 12
+quadros seguidos numa só ocorrência (efeito de encadeamento do DBSCAN com `min_samples=1`). Em produção, o
+agrupamento da câmera deveria considerar também o número do quadro, ou usar um raio menor.
 
 ## Proteção de dados, ética e ODS
 O robô não processa dados pessoais: recebe só coordenadas, confiança da câmera e leituras do sensor. As

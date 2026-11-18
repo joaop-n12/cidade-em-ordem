@@ -1,0 +1,200 @@
+{
+ "estatisticas_dados": {
+  "train": {
+   "imagens": 574,
+   "buracos": 1633,
+   "media_por_imagem": 2.84,
+   "area_mediana_%": 1.58
+  },
+  "val": {
+   "imagens": 116,
+   "buracos": 183,
+   "media_por_imagem": 1.58,
+   "area_mediana_%": 4.89
+  },
+  "test": {
+   "imagens": 129,
+   "buracos": 298,
+   "media_por_imagem": 2.31,
+   "area_mediana_%": 1.94
+  }
+ },
+ "teste": {
+  "precisao": 0.611,
+  "recall": 0.456,
+  "f1": 0.523,
+  "mAP50": 0.442,
+  "mAP50_95": 0.221
+ },
+ "limiar": 0.3,
+ "varredura_limiar": [
+  [
+   0.1,
+   0.404,
+   0.564,
+   0.471,
+   168,
+   248,
+   130
+  ],
+  [
+   0.15,
+   0.457,
+   0.537,
+   0.494,
+   160,
+   190,
+   138
+  ],
+  [
+   0.2,
+   0.483,
+   0.517,
+   0.499,
+   154,
+   165,
+   144
+  ],
+  [
+   0.25,
+   0.522,
+   0.517,
+   0.519,
+   154,
+   141,
+   144
+  ],
+  [
+   0.3,
+   0.555,
+   0.507,
+   0.53,
+   151,
+   121,
+   147
+  ],
+  [
+   0.35,
+   0.559,
+   0.463,
+   0.506,
+   138,
+   109,
+   160
+  ],
+  [
+   0.4,
+   0.59,
+   0.453,
+   0.512,
+   135,
+   94,
+   163
+  ],
+  [
+   0.45,
+   0.604,
+   0.43,
+   0.502,
+   128,
+   84,
+   170
+  ],
+  [
+   0.5,
+   0.598,
+   0.389,
+   0.472,
+   116,
+   78,
+   182
+  ],
+  [
+   0.55,
+   0.628,
+   0.379,
+   0.473,
+   113,
+   67,
+   185
+  ],
+  [
+   0.6,
+   0.625,
+   0.369,
+   0.464,
+   110,
+   66,
+   188
+  ],
+  [
+   0.65,
+   0.629,
+   0.359,
+   0.457,
+   107,
+   63,
+   191
+  ],
+  [
+   0.7,
+   0.628,
+   0.305,
+   0.411,
+   91,
+   54,
+   207
+  ],
+  [
+   0.75,
+   0.702,
+   0.285,
+   0.406,
+   85,
+   36,
+   213
+  ]
+ ],
+ "robustez": {
+  "original": {
+   "precisao": 0.555,
+   "recall": 0.507
+  },
+  "sombra": {
+   "precisao": 0.515,
+   "recall": 0.45
+  },
+  "pouca luz": {
+   "precisao": 0.5,
+   "recall": 0.443
+  },
+  "luz estourada": {
+   "precisao": 0.562,
+   "recall": 0.366
+  },
+  "desfoque": {
+   "precisao": 0.528,
+   "recall": 0.477
+  },
+  "obstrução parcial": {
+   "precisao": 0.296,
+   "recall": 0.225
+  }
+ },
+ "desempenho": {
+  "hardware_gpu": null,
+  "resolucao_entrada": "640x640",
+  "cpu": {
+   "latencia_media_ms": 32.7,
+   "fps": 30.5,
+   "imagens": 30
+  },
+  "hardware_cpu": "AMD64 Family 25 Model 33 Stepping 2, AuthenticAMD (32 núcleos)"
+ },
+ "video": {
+  "quadros": 40,
+  "latencia_media_ms": 26.7,
+  "fps_modelo": 37.4,
+  "fps_ponta_a_ponta": 30.7
+ }
+}

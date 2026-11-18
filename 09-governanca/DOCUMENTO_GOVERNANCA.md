@@ -74,15 +74,17 @@ Ao analisar a base, vimos que as 819 imagens vinham de apenas 269 fotos originai
 [QUADRO 3 - Resultados no conjunto de teste]
 | Métrica | Valor |
 |---|---|
-| Precisão | ⬜ |
-| Recall | ⬜ |
-| F1 | ⬜ |
-| mAP@0,5 | ⬜ |
-| mAP@0,5:0,95 | ⬜ |
-| Limiar de confiança escolhido | ⬜ |
-| Latência média por imagem (CPU) | ⬜ |
+| Precisão | 0,611 |
+| Recall | 0,456 |
+| F1 | 0,523 |
+| mAP@0,5 | 0,442 |
+| mAP@0,5:0,95 | 0,221 |
+| Limiar de confiança escolhido | 0,30 |
+| Latência média por imagem (CPU, 640×640) | 32,7 ms (30 FPS) |
 
-Também medimos a queda de desempenho com sombra, pouca luz, luz estourada, desfoque e obstrução parcial, e processamos uma sequência de imagens como se fosse o vídeo do trajeto do caminhão. Cada detecção recebe a posição GPS simulada e vai para o robô RPA.
+O resultado é suficiente para triagem com confirmação, mas não para decidir sozinho. Os buracos do teste são menores que os da validação (área mediana de 1,9% contra 4,9% da imagem), e o modelo perde principalmente buracos pequenos e distantes e buracos no meio de asfalto trincado. No teste de robustez, o recall caiu 6% com desfoque, 11% com sombra, 28% com luz estourada e 56% com obstrução parcial. A obstrução pesa menos na prática, porque o caminhão passa pela mesma rua várias vezes por semana.
+
+Processamos também uma sequência de imagens como se fosse o vídeo do trajeto do caminhão. Cada detecção recebe a posição GPS simulada e vai para o robô RPA.
 
 ## 2.5 Processamento de Linguagem Natural
 

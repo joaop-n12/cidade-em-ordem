@@ -1,0 +1,1154 @@
+[
+ {
+  "id_origem": "cv-q0000-0",
+  "fonte": "camera",
+  "lat": -23.5398,
+  "lon": -46.5771,
+  "quadro": 0,
+  "detectado_em": "2026-11-18T20:03:04",
+  "tipo": "buraco",
+  "confianca": 0.878,
+  "bbox": [
+   35,
+   132,
+   834,
+   385
+  ],
+  "area_relativa": 0.389,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0001-0",
+  "fonte": "camera",
+  "lat": -23.539851,
+  "lon": -46.576997,
+  "quadro": 1,
+  "detectado_em": "2026-11-18T20:03:04",
+  "tipo": "buraco",
+  "confianca": 0.627,
+  "bbox": [
+   292,
+   385,
+   926,
+   491
+  ],
+  "area_relativa": 0.1293,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0002-0",
+  "fonte": "camera",
+  "lat": -23.539903,
+  "lon": -46.576895,
+  "quadro": 2,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.627,
+  "bbox": [
+   293,
+   385,
+   926,
+   491
+  ],
+  "area_relativa": 0.1293,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0003-0",
+  "fonte": "camera",
+  "lat": -23.539954,
+  "lon": -46.576792,
+  "quadro": 3,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.627,
+  "bbox": [
+   292,
+   385,
+   926,
+   491
+  ],
+  "area_relativa": 0.1293,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0004-0",
+  "fonte": "camera",
+  "lat": -23.540005,
+  "lon": -46.57669,
+  "quadro": 4,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.829,
+  "bbox": [
+   239,
+   361,
+   372,
+   533
+  ],
+  "area_relativa": 0.0443,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0004-1",
+  "fonte": "camera",
+  "lat": -23.540005,
+  "lon": -46.57669,
+  "quadro": 4,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.827,
+  "bbox": [
+   751,
+   454,
+   924,
+   540
+  ],
+  "area_relativa": 0.0289,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0004-2",
+  "fonte": "camera",
+  "lat": -23.540005,
+  "lon": -46.57669,
+  "quadro": 4,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.762,
+  "bbox": [
+   534,
+   382,
+   632,
+   451
+  ],
+  "area_relativa": 0.0131,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0004-3",
+  "fonte": "camera",
+  "lat": -23.540005,
+  "lon": -46.57669,
+  "quadro": 4,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.654,
+  "bbox": [
+   636,
+   280,
+   714,
+   313
+  ],
+  "area_relativa": 0.0049,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0004-4",
+  "fonte": "camera",
+  "lat": -23.540005,
+  "lon": -46.57669,
+  "quadro": 4,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.505,
+  "bbox": [
+   313,
+   284,
+   409,
+   331
+  ],
+  "area_relativa": 0.0087,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0004-5",
+  "fonte": "camera",
+  "lat": -23.540005,
+  "lon": -46.57669,
+  "quadro": 4,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.37,
+  "bbox": [
+   495,
+   259,
+   572,
+   311
+  ],
+  "area_relativa": 0.0078,
+  "recomendacao": "enviar para vistoria"
+ },
+ {
+  "id_origem": "cv-q0004-6",
+  "fonte": "camera",
+  "lat": -23.540005,
+  "lon": -46.57669,
+  "quadro": 4,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.36,
+  "bbox": [
+   730,
+   358,
+   798,
+   402
+  ],
+  "area_relativa": 0.0057,
+  "recomendacao": "enviar para vistoria"
+ },
+ {
+  "id_origem": "cv-q0004-7",
+  "fonte": "camera",
+  "lat": -23.540005,
+  "lon": -46.57669,
+  "quadro": 4,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.346,
+  "bbox": [
+   431,
+   319,
+   507,
+   349
+  ],
+  "area_relativa": 0.0044,
+  "recomendacao": "enviar para vistoria"
+ },
+ {
+  "id_origem": "cv-q0005-0",
+  "fonte": "camera",
+  "lat": -23.540056,
+  "lon": -46.576587,
+  "quadro": 5,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.829,
+  "bbox": [
+   239,
+   361,
+   372,
+   533
+  ],
+  "area_relativa": 0.0443,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0005-1",
+  "fonte": "camera",
+  "lat": -23.540056,
+  "lon": -46.576587,
+  "quadro": 5,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.827,
+  "bbox": [
+   751,
+   454,
+   925,
+   540
+  ],
+  "area_relativa": 0.0289,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0005-2",
+  "fonte": "camera",
+  "lat": -23.540056,
+  "lon": -46.576587,
+  "quadro": 5,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.757,
+  "bbox": [
+   534,
+   382,
+   632,
+   451
+  ],
+  "area_relativa": 0.0131,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0005-3",
+  "fonte": "camera",
+  "lat": -23.540056,
+  "lon": -46.576587,
+  "quadro": 5,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.651,
+  "bbox": [
+   637,
+   280,
+   714,
+   313
+  ],
+  "area_relativa": 0.0049,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0005-4",
+  "fonte": "camera",
+  "lat": -23.540056,
+  "lon": -46.576587,
+  "quadro": 5,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.503,
+  "bbox": [
+   313,
+   284,
+   409,
+   331
+  ],
+  "area_relativa": 0.0087,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0005-5",
+  "fonte": "camera",
+  "lat": -23.540056,
+  "lon": -46.576587,
+  "quadro": 5,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.364,
+  "bbox": [
+   495,
+   259,
+   572,
+   311
+  ],
+  "area_relativa": 0.0078,
+  "recomendacao": "enviar para vistoria"
+ },
+ {
+  "id_origem": "cv-q0005-6",
+  "fonte": "camera",
+  "lat": -23.540056,
+  "lon": -46.576587,
+  "quadro": 5,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.361,
+  "bbox": [
+   730,
+   358,
+   798,
+   402
+  ],
+  "area_relativa": 0.0057,
+  "recomendacao": "enviar para vistoria"
+ },
+ {
+  "id_origem": "cv-q0005-7",
+  "fonte": "camera",
+  "lat": -23.540056,
+  "lon": -46.576587,
+  "quadro": 5,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.35,
+  "bbox": [
+   431,
+   319,
+   507,
+   349
+  ],
+  "area_relativa": 0.0044,
+  "recomendacao": "enviar para vistoria"
+ },
+ {
+  "id_origem": "cv-q0006-0",
+  "fonte": "camera",
+  "lat": -23.540108,
+  "lon": -46.576485,
+  "quadro": 6,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.83,
+  "bbox": [
+   239,
+   361,
+   372,
+   533
+  ],
+  "area_relativa": 0.0443,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0006-1",
+  "fonte": "camera",
+  "lat": -23.540108,
+  "lon": -46.576485,
+  "quadro": 6,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.826,
+  "bbox": [
+   751,
+   454,
+   924,
+   540
+  ],
+  "area_relativa": 0.0288,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0006-2",
+  "fonte": "camera",
+  "lat": -23.540108,
+  "lon": -46.576485,
+  "quadro": 6,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.762,
+  "bbox": [
+   534,
+   382,
+   632,
+   451
+  ],
+  "area_relativa": 0.013,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0006-3",
+  "fonte": "camera",
+  "lat": -23.540108,
+  "lon": -46.576485,
+  "quadro": 6,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.651,
+  "bbox": [
+   637,
+   280,
+   714,
+   313
+  ],
+  "area_relativa": 0.0049,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0006-4",
+  "fonte": "camera",
+  "lat": -23.540108,
+  "lon": -46.576485,
+  "quadro": 6,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.502,
+  "bbox": [
+   313,
+   284,
+   409,
+   331
+  ],
+  "area_relativa": 0.0087,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0006-5",
+  "fonte": "camera",
+  "lat": -23.540108,
+  "lon": -46.576485,
+  "quadro": 6,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.365,
+  "bbox": [
+   495,
+   259,
+   572,
+   311
+  ],
+  "area_relativa": 0.0078,
+  "recomendacao": "enviar para vistoria"
+ },
+ {
+  "id_origem": "cv-q0006-6",
+  "fonte": "camera",
+  "lat": -23.540108,
+  "lon": -46.576485,
+  "quadro": 6,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.359,
+  "bbox": [
+   730,
+   358,
+   798,
+   402
+  ],
+  "area_relativa": 0.0057,
+  "recomendacao": "enviar para vistoria"
+ },
+ {
+  "id_origem": "cv-q0006-7",
+  "fonte": "camera",
+  "lat": -23.540108,
+  "lon": -46.576485,
+  "quadro": 6,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.349,
+  "bbox": [
+   431,
+   319,
+   507,
+   349
+  ],
+  "area_relativa": 0.0044,
+  "recomendacao": "enviar para vistoria"
+ },
+ {
+  "id_origem": "cv-q0007-0",
+  "fonte": "camera",
+  "lat": -23.540159,
+  "lon": -46.576382,
+  "quadro": 7,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.487,
+  "bbox": [
+   854,
+   393,
+   960,
+   540
+  ],
+  "area_relativa": 0.0302,
+  "recomendacao": "enviar para vistoria"
+ },
+ {
+  "id_origem": "cv-q0008-0",
+  "fonte": "camera",
+  "lat": -23.540215,
+  "lon": -46.576272,
+  "quadro": 8,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.486,
+  "bbox": [
+   854,
+   393,
+   960,
+   540
+  ],
+  "area_relativa": 0.0302,
+  "recomendacao": "enviar para vistoria"
+ },
+ {
+  "id_origem": "cv-q0009-0",
+  "fonte": "camera",
+  "lat": -23.540292,
+  "lon": -46.576131,
+  "quadro": 9,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.487,
+  "bbox": [
+   854,
+   393,
+   960,
+   540
+  ],
+  "area_relativa": 0.0302,
+  "recomendacao": "enviar para vistoria"
+ },
+ {
+  "id_origem": "cv-q0010-0",
+  "fonte": "camera",
+  "lat": -23.540369,
+  "lon": -46.57599,
+  "quadro": 10,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.865,
+  "bbox": [
+   445,
+   279,
+   811,
+   412
+  ],
+  "area_relativa": 0.0941,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0011-0",
+  "fonte": "camera",
+  "lat": -23.540446,
+  "lon": -46.575849,
+  "quadro": 11,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.865,
+  "bbox": [
+   444,
+   279,
+   811,
+   412
+  ],
+  "area_relativa": 0.0942,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0012-0",
+  "fonte": "camera",
+  "lat": -23.540523,
+  "lon": -46.575708,
+  "quadro": 12,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.865,
+  "bbox": [
+   444,
+   279,
+   811,
+   412
+  ],
+  "area_relativa": 0.0942,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0013-0",
+  "fonte": "camera",
+  "lat": -23.5406,
+  "lon": -46.575567,
+  "quadro": 13,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.799,
+  "bbox": [
+   435,
+   284,
+   663,
+   399
+  ],
+  "area_relativa": 0.0506,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0013-1",
+  "fonte": "camera",
+  "lat": -23.5406,
+  "lon": -46.575567,
+  "quadro": 13,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.374,
+  "bbox": [
+   561,
+   314,
+   847,
+   540
+  ],
+  "area_relativa": 0.1249,
+  "recomendacao": "enviar para vistoria"
+ },
+ {
+  "id_origem": "cv-q0014-0",
+  "fonte": "camera",
+  "lat": -23.540677,
+  "lon": -46.575426,
+  "quadro": 14,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.795,
+  "bbox": [
+   435,
+   284,
+   663,
+   399
+  ],
+  "area_relativa": 0.0506,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0014-1",
+  "fonte": "camera",
+  "lat": -23.540677,
+  "lon": -46.575426,
+  "quadro": 14,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.378,
+  "bbox": [
+   560,
+   314,
+   847,
+   540
+  ],
+  "area_relativa": 0.125,
+  "recomendacao": "enviar para vistoria"
+ },
+ {
+  "id_origem": "cv-q0015-0",
+  "fonte": "camera",
+  "lat": -23.540754,
+  "lon": -46.575285,
+  "quadro": 15,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.796,
+  "bbox": [
+   435,
+   284,
+   663,
+   399
+  ],
+  "area_relativa": 0.0506,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0015-1",
+  "fonte": "camera",
+  "lat": -23.540754,
+  "lon": -46.575285,
+  "quadro": 15,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.376,
+  "bbox": [
+   560,
+   314,
+   847,
+   540
+  ],
+  "area_relativa": 0.125,
+  "recomendacao": "enviar para vistoria"
+ },
+ {
+  "id_origem": "cv-q0019-0",
+  "fonte": "camera",
+  "lat": -23.541105,
+  "lon": -46.574677,
+  "quadro": 19,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.869,
+  "bbox": [
+   257,
+   197,
+   777,
+   385
+  ],
+  "area_relativa": 0.1883,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0020-0",
+  "fonte": "camera",
+  "lat": -23.541195,
+  "lon": -46.574523,
+  "quadro": 20,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.869,
+  "bbox": [
+   257,
+   197,
+   777,
+   385
+  ],
+  "area_relativa": 0.1884,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0024-0",
+  "fonte": "camera",
+  "lat": -23.541562,
+  "lon": -46.573908,
+  "quadro": 24,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.691,
+  "bbox": [
+   204,
+   237,
+   740,
+   466
+  ],
+  "area_relativa": 0.2371,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0025-0",
+  "fonte": "camera",
+  "lat": -23.541664,
+  "lon": -46.573754,
+  "quadro": 25,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.705,
+  "bbox": [
+   204,
+   237,
+   748,
+   492
+  ],
+  "area_relativa": 0.2683,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0026-0",
+  "fonte": "camera",
+  "lat": -23.541767,
+  "lon": -46.5736,
+  "quadro": 26,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.705,
+  "bbox": [
+   204,
+   237,
+   748,
+   492
+  ],
+  "area_relativa": 0.2683,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0030-0",
+  "fonte": "camera",
+  "lat": -23.542177,
+  "lon": -46.572985,
+  "quadro": 30,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.869,
+  "bbox": [
+   193,
+   370,
+   324,
+   431
+  ],
+  "area_relativa": 0.0155,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0030-1",
+  "fonte": "camera",
+  "lat": -23.542177,
+  "lon": -46.572985,
+  "quadro": 30,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.665,
+  "bbox": [
+   398,
+   432,
+   579,
+   472
+  ],
+  "area_relativa": 0.0142,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0030-2",
+  "fonte": "camera",
+  "lat": -23.542177,
+  "lon": -46.572985,
+  "quadro": 30,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.653,
+  "bbox": [
+   408,
+   302,
+   519,
+   333
+  ],
+  "area_relativa": 0.0068,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0030-3",
+  "fonte": "camera",
+  "lat": -23.542177,
+  "lon": -46.572985,
+  "quadro": 30,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.585,
+  "bbox": [
+   445,
+   371,
+   550,
+   416
+  ],
+  "area_relativa": 0.0091,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0030-4",
+  "fonte": "camera",
+  "lat": -23.542177,
+  "lon": -46.572985,
+  "quadro": 30,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.443,
+  "bbox": [
+   508,
+   462,
+   865,
+   537
+  ],
+  "area_relativa": 0.0518,
+  "recomendacao": "enviar para vistoria"
+ },
+ {
+  "id_origem": "cv-q0031-0",
+  "fonte": "camera",
+  "lat": -23.542279,
+  "lon": -46.572831,
+  "quadro": 31,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.864,
+  "bbox": [
+   192,
+   370,
+   324,
+   431
+  ],
+  "area_relativa": 0.0155,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0031-1",
+  "fonte": "camera",
+  "lat": -23.542279,
+  "lon": -46.572831,
+  "quadro": 31,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.665,
+  "bbox": [
+   398,
+   432,
+   579,
+   472
+  ],
+  "area_relativa": 0.0142,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0031-2",
+  "fonte": "camera",
+  "lat": -23.542279,
+  "lon": -46.572831,
+  "quadro": 31,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.65,
+  "bbox": [
+   408,
+   302,
+   519,
+   333
+  ],
+  "area_relativa": 0.0067,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0031-3",
+  "fonte": "camera",
+  "lat": -23.542279,
+  "lon": -46.572831,
+  "quadro": 31,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.582,
+  "bbox": [
+   446,
+   371,
+   550,
+   416
+  ],
+  "area_relativa": 0.0091,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0031-4",
+  "fonte": "camera",
+  "lat": -23.542279,
+  "lon": -46.572831,
+  "quadro": 31,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.441,
+  "bbox": [
+   508,
+   462,
+   865,
+   537
+  ],
+  "area_relativa": 0.0517,
+  "recomendacao": "enviar para vistoria"
+ },
+ {
+  "id_origem": "cv-q0032-0",
+  "fonte": "camera",
+  "lat": -23.542382,
+  "lon": -46.572636,
+  "quadro": 32,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.865,
+  "bbox": [
+   192,
+   370,
+   324,
+   431
+  ],
+  "area_relativa": 0.0155,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0032-1",
+  "fonte": "camera",
+  "lat": -23.542382,
+  "lon": -46.572636,
+  "quadro": 32,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.665,
+  "bbox": [
+   398,
+   432,
+   578,
+   472
+  ],
+  "area_relativa": 0.0142,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0032-2",
+  "fonte": "camera",
+  "lat": -23.542382,
+  "lon": -46.572636,
+  "quadro": 32,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.646,
+  "bbox": [
+   408,
+   302,
+   519,
+   333
+  ],
+  "area_relativa": 0.0068,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0032-3",
+  "fonte": "camera",
+  "lat": -23.542382,
+  "lon": -46.572636,
+  "quadro": 32,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.588,
+  "bbox": [
+   445,
+   371,
+   550,
+   416
+  ],
+  "area_relativa": 0.0091,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0032-4",
+  "fonte": "camera",
+  "lat": -23.542382,
+  "lon": -46.572636,
+  "quadro": 32,
+  "detectado_em": "2026-11-18T20:03:05",
+  "tipo": "buraco",
+  "confianca": 0.441,
+  "bbox": [
+   508,
+   462,
+   865,
+   537
+  ],
+  "area_relativa": 0.0517,
+  "recomendacao": "enviar para vistoria"
+ },
+ {
+  "id_origem": "cv-q0036-0",
+  "fonte": "camera",
+  "lat": -23.542792,
+  "lon": -46.571815,
+  "quadro": 36,
+  "detectado_em": "2026-11-18T20:03:06",
+  "tipo": "buraco",
+  "confianca": 0.806,
+  "bbox": [
+   3,
+   244,
+   473,
+   417
+  ],
+  "area_relativa": 0.157,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0037-0",
+  "fonte": "camera",
+  "lat": -23.542895,
+  "lon": -46.57161,
+  "quadro": 37,
+  "detectado_em": "2026-11-18T20:03:06",
+  "tipo": "buraco",
+  "confianca": 0.81,
+  "bbox": [
+   3,
+   244,
+   474,
+   417
+  ],
+  "area_relativa": 0.1576,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0038-0",
+  "fonte": "camera",
+  "lat": -23.542997,
+  "lon": -46.571405,
+  "quadro": 38,
+  "detectado_em": "2026-11-18T20:03:06",
+  "tipo": "buraco",
+  "confianca": 0.809,
+  "bbox": [
+   3,
+   244,
+   474,
+   417
+  ],
+  "area_relativa": 0.1577,
+  "recomendacao": "abrir ordem de serviço"
+ },
+ {
+  "id_origem": "cv-q0039-0",
+  "fonte": "camera",
+  "lat": -23.5431,
+  "lon": -46.5712,
+  "quadro": 39,
+  "detectado_em": "2026-11-18T20:03:06",
+  "tipo": "buraco",
+  "confianca": 0.601,
+  "bbox": [
+   269,
+   240,
+   578,
+   440
+  ],
+  "area_relativa": 0.1193,
+  "recomendacao": "abrir ordem de serviço"
+ }
+]

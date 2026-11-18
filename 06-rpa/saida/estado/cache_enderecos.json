@@ -8,5 +8,30 @@
   "endereco": "Travessa Calixto Calil, Vila Azevedo",
   "tipo_via": "local",
   "origem": "nominatim"
+ },
+ "-23.54017,-46.57637": {
+  "endereco": "Rua Catiguá, Vila Azevedo",
+  "tipo_via": "coletora",
+  "origem": "nominatim"
+ },
+ "-23.54115,-46.57460": {
+  "endereco": "Rua Coronel Luis Americano, Vila Azevedo",
+  "tipo_via": "local",
+  "origem": "nominatim"
+ },
+ "-23.54166,-46.57375": {
+  "endereco": "Rua Coronel Joaquim Antônio Dias, Vila Azevedo",
+  "tipo_via": "local",
+  "origem": "nominatim"
+ },
+ "-23.54228,-46.57282": {
+  "endereco": "Rua Visconde de Itaboraí, Vila Azevedo",
+  "tipo_via": "local",
+  "origem": "nominatim"
+ },
+ "-23.54298,-46.57145": {
+  "endereco": "Rua Padre Estevão Pernet, Vila Azevedo",
+  "tipo_via": "local",
+  "origem": "nominatim"
  }
 }

@@ -1,9 +1,12 @@
-2026-11-18 19:15:02,417 [INFO] === Robô Cidade em Ordem iniciado (entrada=C:\Users\João\OneDrive\Documentos\GS_2026\06-rpa\entrada, offline=False) ===
-2026-11-18 19:15:02,417 [ERROR] Arquivo de visão computacional não encontrado: C:\Users\João\OneDrive\Documentos\GS_2026\06-rpa\entrada\deteccoes_visao.json - seguindo sem essa fonte
-2026-11-18 19:15:02,424 [INFO] Lidas 2 detecções de sensor IoT (deteccoes_iot.json)
-2026-11-18 19:15:02,424 [INFO] Validação: 2 válidas, 0 rejeitadas
-2026-11-18 19:15:02,582 [INFO] Agrupamento DBSCAN (raio 25 m): 2 detecções -> 2 ocorrências
-2026-11-18 19:15:03,517 [INFO] Previsão de chuva nas próximas 24 h: 16.3 mm
-2026-11-18 19:15:07,145 [INFO] OS emitida: OC-6614C1245D | Travessa Calixto Calil, Vila Azevedo | Alta (78) | Impacto/profundidade severos medidos pelo sensor
-2026-11-18 19:15:07,145 [INFO] OS emitida: OC-C00C9390CD | Rua Catiguá, Vila Azevedo | Alta (76) | Sensor detectou em passagens diferentes
-2026-11-18 19:15:07,169 [INFO] === Fim: {"detecções lidas": 2, "rejeitadas": 0, "ocorrências após agrupamento": 2, "OS novas": 2, "OS já emitidas (não duplicadas)": 0, "revisão humana": 0, "falhas de API tratadas": 0} ===
+2026-11-18 20:04:08,144 [INFO] === Robô Cidade em Ordem iniciado (entrada=C:\Users\João\OneDrive\Documentos\GS_2026\06-rpa\entrada, offline=False) ===
+2026-11-18 20:04:08,145 [INFO] Lidas 64 detecções de visão computacional (deteccoes_visao.json)
+2026-11-18 20:04:08,145 [INFO] Lidas 2 detecções de sensor IoT (deteccoes_iot.json)
+2026-11-18 20:04:08,145 [INFO] Validação: 66 válidas, 0 rejeitadas
+2026-11-18 20:04:08,147 [INFO] Agrupamento DBSCAN (raio 25 m): 66 detecções -> 5 ocorrências
+2026-11-18 20:04:08,971 [INFO] Previsão de chuva nas próximas 24 h: 16.3 mm
+2026-11-18 20:04:17,491 [INFO] OS emitida: OC-B2B1C7E995 | Rua Padre Estevão Pernet, Vila Azevedo | Crítica (98) | Confirmado por câmera e sensor
+2026-11-18 20:04:17,491 [INFO] OS emitida: OC-C00C9390CD | Rua Catiguá, Vila Azevedo | Crítica (93) | Confirmado por câmera e sensor
+2026-11-18 20:04:17,491 [INFO] OS emitida: OC-A4E550B57A | Rua Coronel Luis Americano, Vila Azevedo | Média (56) | Câmera detectou em 2 quadros com confiança alta
+2026-11-18 20:04:17,491 [INFO] OS emitida: OC-AD87C1FC44 | Rua Visconde de Itaboraí, Vila Azevedo | Média (56) | Câmera detectou em 12 quadros com confiança alta
+2026-11-18 20:04:17,491 [INFO] OS emitida: OC-3EA25835D5 | Rua Coronel Joaquim Antônio Dias, Vila Azevedo | Média (54) | Câmera detectou em 3 quadros com confiança alta
+2026-11-18 20:04:17,517 [INFO] === Fim: {"detecções lidas": 66, "rejeitadas": 0, "ocorrências após agrupamento": 5, "OS novas": 5, "OS já emitidas (não duplicadas)": 0, "revisão humana": 0, "falhas de API tratadas": 0} ===
