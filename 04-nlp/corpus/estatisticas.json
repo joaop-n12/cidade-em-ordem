@@ -1,0 +1,116 @@
+{
+ "estatisticas": {
+  "corpus_texto.jsonl": {
+   "exemplos": 287,
+   "minimo_exigido": 50,
+   "media_tokens": 479.7,
+   "duplicatas_removidas": 0
+  },
+  "corpus_qa.jsonl": {
+   "exemplos": 183,
+   "minimo_exigido": 100,
+   "media_tokens": 88.6,
+   "duplicatas_removidas": 0
+  },
+  "corpus_chat.jsonl": {
+   "exemplos": 46,
+   "minimo_exigido": 30,
+   "media_tokens": 230.1,
+   "duplicatas_removidas": 0,
+   "dialogos_com_2_ou_mais_trocas": 46
+  },
+  "duplicatas_na_limpeza": {
+   "?": {
+    "paragrafos_repetidos": 0,
+    "versoes_antigas_de_artigos": 0
+   },
+   "cartilha_calcadas_sp_2024.pdf": {
+    "paragrafos_repetidos": 1,
+    "versoes_antigas_de_artigos": 0
+   },
+   "ctb_lei_9503_1997.html": {
+    "paragrafos_repetidos": 14,
+    "versoes_antigas_de_artigos": 1
+   },
+   "lbi_lei_13146_2015.html": {
+    "paragrafos_repetidos": 10,
+    "versoes_antigas_de_artigos": 0
+   },
+   "sp_lei_15442_2011.docx": {
+    "paragrafos_repetidos": 0,
+    "versoes_antigas_de_artigos": 3
+   },
+   "pnrs_lei_12305_2010.txt": {
+    "paragrafos_repetidos": 4,
+    "versoes_antigas_de_artigos": 1
+   },
+   "texto_colado": {
+    "paragrafos_repetidos": 0,
+    "versoes_antigas_de_artigos": 0
+   }
+  }
+ },
+ "limpeza": [
+  {
+   "fonte": "cartilha_calcadas_sp_2024.pdf",
+   "caracteres_brutos": 20649,
+   "caracteres_limpos": 19401,
+   "reducao_%": 6.0,
+   "mascarados": {
+    "NOME": 1
+   }
+  },
+  {
+   "fonte": "ctb_lei_9503_1997.html",
+   "caracteres_brutos": 357518,
+   "caracteres_limpos": 273930,
+   "reducao_%": 23.4,
+   "mascarados": {
+    "NOME": 1
+   }
+  },
+  {
+   "fonte": "lbi_lei_13146_2015.html",
+   "caracteres_brutos": 131914,
+   "caracteres_limpos": 107175,
+   "reducao_%": 18.8,
+   "mascarados": {
+    "NOME": 1
+   }
+  },
+  {
+   "fonte": "sp_lei_15442_2011.docx",
+   "caracteres_brutos": 20332,
+   "caracteres_limpos": 18695,
+   "reducao_%": 8.1,
+   "mascarados": {
+    "NOME": 2
+   }
+  },
+  {
+   "fonte": "pnrs_lei_12305_2010.txt",
+   "caracteres_brutos": 71829,
+   "caracteres_limpos": 62419,
+   "reducao_%": 13.1,
+   "mascarados": {
+    "NOME": 1
+   }
+  },
+  {
+   "fonte": "texto_colado",
+   "caracteres_brutos": 453,
+   "caracteres_limpos": 395,
+   "reducao_%": 12.8,
+   "mascarados": {
+    "EMAIL": 1,
+    "CPF": 1,
+    "TELEFONE": 1,
+    "NOME": 2
+   }
+  }
+ ],
+ "anonimizacao_exemplo": {
+  "antes": "Relato recebido pela ouvidoria (exemplo fictício):\n\nMeu nome é Maria Aparecida Souza, CPF 123.456.789-09, telefone (11) 98765-4321 e e-mail maria.souza@exemplo.com.br.\n\nNo dia 3 de março tropecei num buraco da calçada da Rua Tuiuti e machuquei o joelho. A calçada está em mau estado há meses, com desníveis e raízes de árvore. O vizinho, Sr. José Carlos Pereira, também já caiu no mesmo lugar.\n\nGostaria de saber de quem é a responsabilidade pelo conserto.",
+  "depois": "Relato recebido pela ouvidoria (exemplo fictício):\n\nMeu nome é [NOME], CPF [CPF], telefone [TELEFONE] e e-mail [EMAIL].\n\nNo dia 3 de março tropecei num buraco da calçada da Rua Tuiuti e machuquei o joelho. A calçada está em mau estado há meses, com desníveis e raízes de árvore. O vizinho, Sr. [NOME], também já caiu no mesmo lugar.\n\nGostaria de saber de quem é a responsabilidade pelo conserto."
+ }
+}

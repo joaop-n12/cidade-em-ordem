@@ -1,0 +1,128 @@
+cartilha_calcadas_sp_2024.pdf           5571 KB
+ctb_lei_9503_1997.html                   772 KB
+lbi_lei_13146_2015.html                  238 KB
+sp_lei_15442_2011.docx                    43 KB
+pnrs_lei_12305_2010.txt                   70 KB
+cartilha_calcadas_sp_2024.pdf       PDF    ~24 páginas     20626 caracteres
+ctb_lei_9503_1997.html              HTML   ~119 páginas    357518 caracteres
+lbi_lei_13146_2015.html             HTML   ~43 páginas    131914 caracteres
+sp_lei_15442_2011.docx              DOCX   ~6 páginas     20332 caracteres
+pnrs_lei_12305_2010.txt             TXT    ~23 páginas     71829 caracteres
+texto_colado                        TEXTO  ~1 páginas       453 caracteres
+Total aproximado: 216 páginas (páginas de PDF reais; para os demais, 3.000 caracteres = 1 página)
+ANTES:
+ Relato recebido pela ouvidoria (exemplo fictício):
+
+Meu nome é Maria Aparecida Souza, CPF 123.456.789-09, telefone (11) 98765-4321 e e-mail maria.souza@exemplo.com.br.
+
+No dia 3 de março tropecei num buraco da calçada da Rua Tuiuti e machuquei o joelho. A calçada está em mau estado há meses, com desníveis e raízes de árvore. O vizinho, Sr. José Carlos Pereira, também já caiu no mesmo lugar.
+
+Gostaria de saber de quem é a responsabilidade pelo conserto. 
+
+DEPOIS:
+ Relato recebido pela ouvidoria (exemplo fictício):
+
+Meu nome é [NOME], CPF [CPF], telefone [TELEFONE] e e-mail [EMAIL].
+
+No dia 3 de março tropecei num buraco da calçada da Rua Tuiuti e machuquei o joelho. A calçada está em mau estado há meses, com desníveis e raízes de árvore. O vizinho, Sr. [NOME], também já caiu no mesmo lugar.
+
+Gostaria de saber de quem é a responsabilidade pelo conserto. 
+
+Itens mascarados: {'EMAIL': 1, 'CPF': 1, 'TELEFONE': 1, 'NOME': 2}
+{'fonte': 'cartilha_calcadas_sp_2024.pdf', 'caracteres_brutos': 20649, 'caracteres_limpos': 19401, 'reducao_%': 6.0, 'mascarados': {'NOME': 1}}
+{'fonte': 'ctb_lei_9503_1997.html', 'caracteres_brutos': 357518, 'caracteres_limpos': 273930, 'reducao_%': 23.4, 'mascarados': {'NOME': 1}}
+{'fonte': 'lbi_lei_13146_2015.html', 'caracteres_brutos': 131914, 'caracteres_limpos': 107175, 'reducao_%': 18.8, 'mascarados': {'NOME': 1}}
+{'fonte': 'sp_lei_15442_2011.docx', 'caracteres_brutos': 20332, 'caracteres_limpos': 18695, 'reducao_%': 8.1, 'mascarados': {'NOME': 2}}
+{'fonte': 'pnrs_lei_12305_2010.txt', 'caracteres_brutos': 71829, 'caracteres_limpos': 62419, 'reducao_%': 13.1, 'mascarados': {'NOME': 1}}
+{'fonte': 'texto_colado', 'caracteres_brutos': 453, 'caracteres_limpos': 395, 'reducao_%': 12.8, 'mascarados': {'EMAIL': 1, 'CPF': 1, 'TELEFONE': 1, 'NOME': 2}}
+
+--- Trecho da cartilha ANTES da limpeza ---
+ Para garan�r a acessibilidade em calçadas, é necessário observar as seguintes
+caracterís�cas: 
+Material de reves�mento do piso; inclinações (longitudinal e transversal); des-
+níveis; dimensões e padronização de mobiliários e elementos urbanos.
+- As calçadas devem ser organizadas em até 3 (três) faixas longitudinais:
+Faixa de Acesso Faixa Livre
+Metade da largura da calçada
+Não poderá ser inferior a 1,20 m*
+*(exceto em situações a�picas)
+Faixa de
+Serviço
+Largura
+mínima
+0,70 m
+{
+02 | SMPED E CPA
+CALÇADAS COM ACESSIBILIDADE
+
+--- DEPOIS ---
+ iramente para todos!
+
+Calçada: um bem de todos!
+
+Silvia Grecco Secretária Municipal da Pessoa com Deficiência
+
+PARÂMETROS ANTROPOMÉTRICOS E DIMENSÕES BÁSICAS O Módulo de Referência - MR é uma área projetada no piso, com dimensões de 0,80m por 1,20m, que corresponde ao espaço necessário para que uma pessoa em cadeira de rodas, motorizada ou não, tenha o mínimo de mobilidade. Portanto, essas dimensões devem ser usadas como referência em projetos, devendo-se considerar ainda o espaço demandado para movimentação, aproximação, transferência e rotação da cadeira de rodas.
+
+Larguras necessárias para o deslocamento em linha reta de pessoas em cadeira de rodas.
+
+0,80 m x 1,20 m Medidas necessárias para manobra de cadeira de rodas sem deslocamento.
+
+ROTAÇÃO DE 90° ROTAÇÃO DE 180° ROTAÇÃO DE 360° 1,2
+287 trechos | média 480 tokens | mín 58 | máx 513
+Dentro de 256-512: 282 (98%)
+Pares extraídos por regras: 153
+Counter({'ctb_lei_9503_1997.html': 123, 'pnrs_lei_12305_2010.txt': 16, 'lbi_lei_13146_2015.html': 14})
+Pares com números não encontrados no documento: nenhum
+Diálogos: 46 (recusas/encaminhamentos: 12)
+Arquivos gravados em C:\Users\João\OneDrive\Documentos\GS_2026\04-nlp\corpus
+corpus_texto.jsonl   {'exemplos': 287, 'minimo_exigido': 50, 'media_tokens': 479.7, 'duplicatas_removidas': 0}  -> OK
+corpus_qa.jsonl      {'exemplos': 183, 'minimo_exigido': 100, 'media_tokens': 88.6, 'duplicatas_removidas': 0}  -> OK
+corpus_chat.jsonl    {'exemplos': 46, 'minimo_exigido': 30, 'media_tokens': 230.1, 'duplicatas_removidas': 0, 'dialogos_com_2_ou_mais_trocas': 46}  -> OK
+
+Duplicatas removidas já na limpeza (antes da segmentação):
+  cartilha_calcadas_sp_2024.pdf       {'paragrafos_repetidos': 1, 'versoes_antigas_de_artigos': 0}
+  ctb_lei_9503_1997.html              {'paragrafos_repetidos': 14, 'versoes_antigas_de_artigos': 1}
+  lbi_lei_13146_2015.html             {'paragrafos_repetidos': 10, 'versoes_antigas_de_artigos': 0}
+  sp_lei_15442_2011.docx              {'paragrafos_repetidos': 0, 'versoes_antigas_de_artigos': 3}
+  pnrs_lei_12305_2010.txt             {'paragrafos_repetidos': 4, 'versoes_antigas_de_artigos': 1}
+  texto_colado                        {'paragrafos_repetidos': 0, 'versoes_antigas_de_artigos': 0}
+
+Exemplos por fonte (texto): {'cartilha_calcadas_sp_2024.pdf': 14, 'ctb_lei_9503_1997.html': 163, 'lbi_lei_13146_2015.html': 61, 'sp_lei_15442_2011.docx': 12, 'pnrs_lei_12305_2010.txt': 37}
+Exemplos por fonte (QA): {'ctb_lei_9503_1997.html': 127, 'lbi_lei_13146_2015.html': 16, 'pnrs_lei_12305_2010.txt': 18, 'sp_lei_15442_2011.docx': 12, 'cartilha_calcadas_sp_2024.pdf': 4, 'politica_do_assistente': 6}
+
+===== 5 exemplos aleatórios: TEXTO =====
+{"text": "§ 1º A gravação será realizada pelo fabricante ou montador, de modo a identificar o veículo, seu fabricante e as suas características, além do ano de fabricação, que não poderá ser alterado. § 2º As regravações, quando necessárias, dependerão de prévia autorização da autoridade executiva de trânsito e somente serão processadas por estabelecimento por ela credenciado, mediante a comprovação de propriedade do veículo, mantida a mesma identificação anterior, inclusive o ano de fabricação. § 3º Nenhum proprietário poderá, sem prévia permissão da autoridade executiva de trânsito, fazer, o 
+
+{"text": "VI - executar a fiscalização de trânsito em vias terrestres, edificações de uso público e edificações privadas de uso coletivo, autuar e aplicar as penalidades de advertência por escrito e multa e as medidas administrativas cabíveis pelas infrações previstas neste Código, excetuadas aquelas de competência privativa dos órgãos ou entidades executivos de trânsito dos Estados e do Distrito Federal previstas no § 2º do art. 22 deste Código, notificando os infratores e arrecadando as multas que aplicar; X - implantar, manter e operar sistema de estacionamento rotativo pago nas vias; XI -  
+
+{"text": "§ 3º São documentos de habilitação: I - a Carteira Nacional de Habilitação; II - a Permissão para Dirigir; e III - a Autorização para Conduzir Ciclomotor. § 4º Aplica-se aos animais recolhidos na forma do inciso X o disposto nos arts. 271 e 328, no que couber. § 5º No caso de documentos em meio digital, as medidas administrativas previstas nos incisos III, IV, V e VI do caput deste artigo serão realizadas por meio de registro no Renach ou Renavam, conforme o caso, na forma estabelecida pelo Contran. Art. 270. O veículo poderá ser retido nos casos expressos neste Código. § 1º Quando a 
+
+{"text": "§ 1º A obrigação de sinalizar é do responsável pela execução ou manutenção da obra ou do evento. § 2º Salvo em casos de emergência, a autoridade de trânsito com circunscrição sobre a via avisará a comunidade, por intermédio dos meios de comunicação social, com quarenta e oito horas de antecedência, de qualquer interdição da via, indicando-se os caminhos alternativos a serem utilizados. § 3 O descumprimento do disposto neste artigo será punido com multa de R$ 81,35 (oitenta e um reais e trinta e cinco centavos) a R$ 488,10 (quatrocentos e oitenta e oito reais e dez centavos), independ 
+
+{"text": "XIII - padrões sustentáveis de produção e consumo: produção e consumo de bens e serviços de forma a atender as necessidades das atuais gerações e permitir melhores condições de vida, sem comprometer a qualidade ambiental e o atendimento das necessidades das gerações futuras; XIV - reciclagem: processo de transformação dos resíduos sólidos que envolve a alteração de suas propriedades físicas, físico-químicas ou biológicas, com vistas à transformação em insumos ou novos produtos, observadas as condições e os padrões estabelecidos pelos órgãos competentes do Sisnama e, se couber, do SNV 
+
+
+===== 5 exemplos aleatórios: QA =====
+{"instruction": "O que é etilômetro segundo o Código de Trânsito Brasileiro?", "input": "", "output": "Pelo Código de Trânsito Brasileiro (Anexo I), etilômetro é: aparelho destinado à medição do teor alcoólico no ar alveolar.", "fonte": "ctb_lei_9503_1997.html"} 
+
+{"instruction": "O que significa gestão integrada de resíduos sólidos para a Política Nacional de Resíduos Sólidos?", "input": "", "output": "Segundo a Política Nacional de Resíduos Sólidos (art. 3º, inciso XI), gestão integrada de resíduos sólidos é: conjunto de ações voltadas para a busca de soluções para os resíduos sólidos, de forma a considerar as dimensões política, econômica, ambiental, cultural e social, com controle social e sob a premissa do desenvolvimento sustentável.", "fonte": "pnrs_lei_12305_2010.txt"} 
+
+{"instruction": "O que é caminhão segundo o Código de Trânsito Brasileiro?", "input": "", "output": "Pelo Código de Trânsito Brasileiro (Anexo I), caminhão é: veículo automotor destinado ao transporte de carga com peso bruto total superior a 3.500 kg (três mil e quinhentos quilogramas), podendo tracionar ou arrastar outro veículo, respeitada a capacidade máxima de tração.", "fonte": "ctb_lei_9503_1997.html"} 
+
+{"instruction": "O que é operação de trânsito segundo o Código de Trânsito Brasileiro?", "input": "", "output": "Pelo Código de Trânsito Brasileiro (Anexo I), operação de trânsito é: monitoramento técnico, baseado nos conceitos de engenharia de tráfego, das condições de fluidez, de estacionamento e de parada na via, de forma a reduzir as interferências, tais como veículos quebrados, sinistrados, estacionados irregularmente atrapalhando o trânsito, prestando socorros imediatos e informações aos pedestres e condutores.", "fonte": "ctb_lei_9503_1997.html"} 
+
+{"instruction": "O que é cruzamento segundo o Código de Trânsito Brasileiro?", "input": "", "output": "Pelo Código de Trânsito Brasileiro (Anexo I), cruzamento é: interseção de duas vias em nível.", "fonte": "ctb_lei_9503_1997.html"} 
+
+
+===== 5 exemplos aleatórios: CHAT =====
+{"messages": [{"role": "system", "content": "Você é o assistente do Cidade em Ordem, serviço público de zeladoria urbana. Responda de forma simples e educada, usando apenas as leis e cartilhas oficiais. Se a pergunta estiver fora do tema ou exigir um profissional, diga isso e indique onde procurar ajuda."}, {"role": "user", "content": "Qual a altura livre mínima que a calçada deve ter?"}, {"role": "assistant", "content": "A faixa livre deve ter altura livre de pelo menos 2,10 metros sem placas, toldos ou coberturas, e de pelo menos 3,00 metros sem partes de construções, medida a partir do níve 
+
+{"messages": [{"role": "system", "content": "Você é o assistente do Cidade em Ordem, serviço público de zeladoria urbana. Responda de forma simples e educada, usando apenas as leis e cartilhas oficiais. Se a pergunta estiver fora do tema ou exigir um profissional, diga isso e indique onde procurar ajuda."}, {"role": "user", "content": "Você pode entrar com o processo contra a prefeitura para mim?"}, {"role": "assistant", "content": "Não posso representar você na Justiça. Para entrar com uma ação, procure a Defensoria Pública, que atende gratuitamente quem não pode pagar advogado, ou um advogad 
+
+{"messages": [{"role": "system", "content": "Você é o assistente do Cidade em Ordem, serviço público de zeladoria urbana. Responda de forma simples e educada, usando apenas as leis e cartilhas oficiais. Se a pergunta estiver fora do tema ou exigir um profissional, diga isso e indique onde procurar ajuda."}, {"role": "user", "content": "Vou ser multado direto se minha calçada estiver quebrada?"}, {"role": "assistant", "content": "Não. Antes de qualquer multa, o responsável recebe uma Notificação Orientativa (Lei 15.442/2011, art. 10-A)."}, {"role": "user", "content": "E quanto tempo eu tenho pa 
+
+{"messages": [{"role": "system", "content": "Você é o assistente do Cidade em Ordem, serviço público de zeladoria urbana. Responda de forma simples e educada, usando apenas as leis e cartilhas oficiais. Se a pergunta estiver fora do tema ou exigir um profissional, diga isso e indique onde procurar ajuda."}, {"role": "user", "content": "O que é autoridade de trânsito segundo o Código de Trânsito Brasileiro?"}, {"role": "assistant", "content": "Pelo Código de Trânsito Brasileiro (Anexo I), autoridade de trânsito é: dirigente máximo de órgão ou entidade executivo integrante do Sistema Nacional de 
+
+{"messages": [{"role": "system", "content": "Você é o assistente do Cidade em Ordem, serviço público de zeladoria urbana. Responda de forma simples e educada, usando apenas as leis e cartilhas oficiais. Se a pergunta estiver fora do tema ou exigir um profissional, diga isso e indique onde procurar ajuda."}, {"role": "user", "content": "O que os órgãos de trânsito devem priorizar?"}, {"role": "assistant", "content": "Eles devem dar prioridade à defesa da vida, incluindo a preservação da saúde e do meio ambiente (CTB, art. 1º, § 5º)."}, {"role": "user", "content": "O que o Código de Trânsito con 
+
