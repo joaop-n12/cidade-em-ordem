@@ -33,7 +33,7 @@ lei veio), sem depender do atendimento telefônico.
 | **Arquitetura agêntica (simples)** | Um roteador decide entre a ferramenta `consultar_ordens` (dados vivos do robô RPA) e o RAG (conhecimento estático). Os guardrails agem antes e depois do modelo |
 
 **Não é um chatbot genérico:** a base de conhecimento é o **corpus limpo e anonimizado construído na disciplina de
-NLP** (5 documentos oficiais, 287 trechos e 177 pares de pergunta e resposta revisados), e a ferramenta lê as
+NLP** (5 documentos oficiais, 287 trechos e 183 pares de pergunta e resposta revisados), e a ferramenta lê as
 ordens de serviço reais do robô.
 
 ## 3. Arquitetura e fluxo
