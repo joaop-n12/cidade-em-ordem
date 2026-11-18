@@ -1,0 +1,34 @@
+[
+ {
+  "id": "OC-C00C9390CD",
+  "tipo": "buraco",
+  "fonte": "sensor",
+  "lat": -23.5402,
+  "lng": -46.5763,
+  "endereco": "Rua Catiguá, Vila Azevedo",
+  "via": "coletora",
+  "confianca": null,
+  "impactoG": 2.4,
+  "profundidadeCm": 6.5,
+  "reincidencias": 1,
+  "chovendo": true,
+  "descricao": "Detectado automaticamente pelo caminhão de coleta. Sensor detectou em passagens diferentes.",
+  "status": "Aberta"
+ },
+ {
+  "id": "OC-6614C1245D",
+  "tipo": "buraco",
+  "fonte": "sensor",
+  "lat": -23.5431,
+  "lng": -46.5712,
+  "endereco": "Travessa Calixto Calil, Vila Azevedo",
+  "via": "local",
+  "confianca": null,
+  "impactoG": 3.4,
+  "profundidadeCm": 13.0,
+  "reincidencias": 0,
+  "chovendo": true,
+  "descricao": "Detectado automaticamente pelo caminhão de coleta. Impacto/profundidade severos medidos pelo sensor.",
+  "status": "Aberta"
+ }
+]

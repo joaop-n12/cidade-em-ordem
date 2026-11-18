@@ -1,0 +1,12 @@
+{
+ "-23.54020,-46.57630": {
+  "endereco": "Rua Catiguá, Vila Azevedo",
+  "tipo_via": "coletora",
+  "origem": "nominatim"
+ },
+ "-23.54310,-46.57120": {
+  "endereco": "Travessa Calixto Calil, Vila Azevedo",
+  "tipo_via": "local",
+  "origem": "nominatim"
+ }
+}

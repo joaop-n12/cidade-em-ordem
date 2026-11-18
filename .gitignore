@@ -13,3 +13,5 @@ venv/
 runs/
 .DS_Store
 Thumbs.db
+!06-rpa/saida/execucao.log
+06-rpa/validacao/execucao_teste/
