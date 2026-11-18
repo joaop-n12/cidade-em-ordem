@@ -125,7 +125,7 @@ def capa_simples(doc, titulo):
     centro(doc, titulo, True, antes=24, tam=14)
 
 
-def tabela(doc, linhas):
+def tabela(doc, linhas, com_fonte=False):
     cab = [c.strip() for c in linhas[0].strip("|").split("|")]
     corpo = [[c.strip() for c in l.strip().strip("|").split("|")] for l in linhas[2:]]
     t = doc.add_table(rows=1, cols=len(cab)); t.style = "Table Grid"; t.alignment = WD_TABLE_ALIGNMENT.CENTER
@@ -140,8 +140,9 @@ def tabela(doc, linhas):
             texto_rico(p, linha[i] if i < len(linha) else "")
             for r in p.runs:
                 r.font.size = Pt(10)
-    fonte = doc.add_paragraph("Fonte: elaborado pelos autores (2026).")
-    fonte.paragraph_format.first_line_indent = Cm(0); fonte.runs[0].font.size = Pt(10)
+    if com_fonte:  # só nos quadros numerados (ABNT)
+        fonte = doc.add_paragraph("Fonte: elaborado pelos autores (2026).")
+        fonte.paragraph_format.first_line_indent = Cm(0); fonte.runs[0].font.size = Pt(10)
 
 
 def converter(md_path, docx_path, abnt):
@@ -173,7 +174,8 @@ def converter(md_path, docx_path, abnt):
             bloco = []
             while i < len(linhas) and linhas[i].startswith("|"):
                 bloco.append(linhas[i]); i += 1
-            tabela(doc, bloco); continue
+            anterior = next((x for x in reversed(linhas[:i - len(bloco)]) if x.strip()), "")
+            tabela(doc, bloco, com_fonte=bool(re.match(r"\[QUADRO \d+", anterior))); continue
         elif re.match(r"!\[[^\]]*\]\(([^)]+)\)", l.strip()):
             m = re.match(r"!\[([^\]]*)\]\(([^)]+)\)", l.strip())
             img = md_path.parent / m.group(2)

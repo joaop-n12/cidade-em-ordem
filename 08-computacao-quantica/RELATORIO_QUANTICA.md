@@ -1,4 +1,4 @@
-# Computação quântica no Cidade em Ordem: quando (e se) ela faz sentido
+# Computação quântica no Cidade em Ordem: quando ela faz sentido
 
 **Computação Quântica & IA** · Global Solution 2026.2 · CitizenTech
 
