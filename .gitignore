@@ -15,3 +15,9 @@ runs/
 Thumbs.db
 !06-rpa/saida/execucao.log
 06-rpa/validacao/execucao_teste/
+
+# Memristor: só o relatório .md e o PDF vão para o GitHub
+07-cluster-memristor/*.docx
+07-cluster-memristor/*.png
+07-cluster-memristor/prints/
+07-cluster-memristor/ROTEIRO_FALSTAD.md

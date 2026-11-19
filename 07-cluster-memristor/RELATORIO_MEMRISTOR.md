@@ -18,7 +18,7 @@ transmitido. Depois do reparo, um pulso reverso apaga o registro.
 Fonte DC V1 (representa o pulso do sensor hipotético) → memristor M1 → resistor de medição R_s = 100 Ω → terra.
 O estado é acompanhado pela resistência R do memristor, lida no painel de informações do Falstad.
 
-![Figura 1 - Circuito no Falstad e leitura inicial do memristor (R = 16 kΩ)](fig1_circuito.png)
+*Figura 1: circuito no Falstad e leitura inicial do memristor (R = 16 kΩ). Ver o PDF do relatório.*
 
 | Componente | Parâmetro | Valor |
 |---|---|---|
@@ -46,7 +46,7 @@ tensão, e um pulso reverso (−3 V) representando o reparo.
 | 6 | −3 V | reparo (reset) | 186 µA | **16 kΩ** |
 | 7 | 0 V | após reset | 0 | **16 kΩ** (manteve) |
 
-![Figura 2 - Ensaios no Falstad: (a) condição A; (b) memória após retirar a tensão; (c) condição B; (d) reset](fig2_ensaios.png)
+*Figura 2: ensaios no Falstad: (a) condição A; (b) memória após retirar a tensão; (c) condição B; (d) reset. Ver o PDF do relatório.*
 
 **Comparação A × B:** as duas condições terminaram no mesmo estado (100 Ω). Só a corrente durante o pulso foi
 diferente (5 mA e 15 mA), porque o dispositivo já estava no valor mínimo depois da condição A. Os valores conferem com
@@ -78,8 +78,7 @@ caminhão desligue antes de transmitir pelo MQTT.
 https://www.falstad.com/circuit/circuitjs.html?ctz=DwYwlgTgBAZgvAIgIwKgFwM6IAwDpsEECsqYIiSeATAVQOx0DM2AHFQGwCcndqIARojotUAB0EIALI1QA3CIhJQAtpkUBTALRIUAPgBQUKMFlQAHhSosojIlShIrDuu1TwE2VAHd3nlQEMzWRwEAHoDI2Blc0trJBcbGmdXWBCoCAB7ADsKAlRM9yR2QlQAEwy0tArkLREVaqQtSjCI42gLBEYk+PZE7Bs7NzSFZDzww2MvGM6k23tHazmhjxaJ4ABzaYWB+adGFkllz3HgUPAIAyA
 
 Para repetir os ensaios, altere a tensão da fonte em cada etapa (clique duplo → *Voltage*) e leia R passando o mouse
-sobre o memristor. Alternativa sem o link: *File → Import From Text* com o texto abaixo. Os prints de todas as etapas
-estão em `prints/`.
+sobre o memristor. Alternativa sem o link: *File → Import From Text* com o texto abaixo. Os prints dos ensaios estão no PDF do relatório.
 ```
 $ 1 0.000005 10.20027730826997 50 5 43 5e-11
 v 128 352 128 176 0 0 40 0 0 0 0.5
