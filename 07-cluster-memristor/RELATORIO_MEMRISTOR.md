@@ -78,7 +78,7 @@ caminhão desligue antes de transmitir pelo MQTT.
 https://www.falstad.com/circuit/circuitjs.html?ctz=DwYwlgTgBAZgvAIgIwKgFwM6IAwDpsEECsqYIiSeATAVQOx0DM2AHFQGwCcndqIARojotUAB0EIALI1QA3CIhJQAtpkUBTALRIUAPgBQUKMFlQAHhSosojIlShIrDuu1TwE2VAHd3nlQEMzWRwEAHoDI2Blc0trJBcbGmdXWBCoCAB7ADsKAlRM9yR2QlQAEwy0tArkLREVaqQtSjCI42gLBEYk+PZE7Bs7NzSFZDzww2MvGM6k23tHazmhjxaJ4ABzaYWB+adGFkllz3HgUPAIAyA
 
 Para repetir os ensaios, altere a tensão da fonte em cada etapa (clique duplo → *Voltage*) e leia R passando o mouse
-sobre o memristor. Alternativa sem o link: *File → Import From Text* com o texto abaixo. Os prints dos ensaios estão no PDF do relatório.
+sobre o memristor. Alternativa sem o link: *File → Import From Text* com o texto abaixo. Os prints das etapas principais estão na Figura 2 do PDF.
 ```
 $ 1 0.000005 10.20027730826997 50 5 43 5e-11
 v 128 352 128 176 0 0 40 0 0 0 0.5
