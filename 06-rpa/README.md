@@ -8,8 +8,8 @@
 | Guilherme Nakamura | RM567460 |
 
 ## Problema
-Em 2025 a Prefeitura de São Paulo recebeu **113,1 mil pedidos de tapa-buraco**, quase 300 por dia, e reconhece
-que um mesmo buraco gera vários chamados (Secretaria das Subprefeituras, via BNews SP). O fluxo atual
+Em 2025 a Prefeitura de São Paulo recebeu **113,1 mil pedidos de tapa-buraco**, cerca de 310 por dia, e reconhece
+que um mesmo buraco gera vários chamados [1]. O fluxo atual
 depende de o cidadão reclamar, e alguém precisa ler, juntar repetições, localizar e priorizar cada pedido
 manualmente.
 
@@ -35,7 +35,7 @@ deteccoes_iot.json (sensor do caminhão) ───┘        │                
 |---|---|---|
 | **1. Automação de leitura e integração de arquivos** | `coletar()` lê os JSON gerados pela visão computacional e pelo IoT e padroniza num único modelo (`Deteccao`) | Junta duas fontes diferentes sem digitação manual. Cada arquivo ausente ou corrompido é tratado separadamente |
 | **2. Integração com APIs web (com timeout, retry e cache)** | `Enriquecedor`: **Nominatim/OpenStreetMap** (endereço e tipo de via a partir da coordenada) e **Open-Meteo** (chuva prevista para 24 h) | Transforma coordenada em endereço que a equipe entende. O tipo de via (avenida ou rua local) e a chuva entram na prioridade. Timeout de 10 s, 3 tentativas com espera exponencial, cache local e respeito ao limite de 1 req/s do Nominatim |
-| **3. IA aplicada ao processo** | `agrupar()`: **DBSCAN** com distância haversine (raio de 25 m) junta detecções do mesmo buraco. `priorizar()`: escore explicável que combina confiança da câmera (modelo YOLO da disciplina de Visão Computacional), impacto e profundidade do sensor, tipo de via, chuva e reincidência | Elimina chamados duplicados (o problema citado pela própria prefeitura) e decide a ordem de atendimento com justificativa por fator |
+| **3. IA aplicada ao processo** | `agrupar()`: **DBSCAN** [5] com distância haversine (raio de 25 m) junta detecções do mesmo buraco. `priorizar()`: escore explicável que combina confiança da câmera (modelo YOLO da disciplina de Visão Computacional), impacto e profundidade do sensor, tipo de via, chuva e reincidência | Elimina chamados duplicados (o problema citado pela própria prefeitura) e decide a ordem de atendimento com justificativa por fator |
 | **4. Geração automática de documentos e relatórios** | `salvar_excel()` (planilha com abas "Ordens de serviço" e "Revisão humana"), `salvar_relatorio()` (HTML da execução), CSV da fila de revisão e JSON para o front-end | Entrega o resultado no formato que a equipe usa (Excel) e um relatório de auditoria de cada execução |
 
 **Por que esses temas:** o gargalo real é o trabalho manual de *juntar, localizar e priorizar* pedidos. Os
@@ -56,9 +56,12 @@ um buraco ficou na frente de outro.
 | Execução repetida | **Idempotência:** o ID da ocorrência é estável (grade de cerca de 20 m), então OS já emitida não é duplicada |
 | Evidência fraca (uma só detecção, confiança baixa) | **Revisão humana**, sem mobilizar equipe à toa |
 
-Não há chaves de API: as duas APIs usadas são públicas e gratuitas. Configurações opcionais ficam no arquivo
-`.env` (fora do repositório, ver `.env.example`). Nenhum dado pessoal é processado: as entradas são
-coordenadas e leituras de sensor.
+**Chaves e senhas:** o robô não precisa de nenhuma chave. As duas APIs usadas (Nominatim [2] e Open-Meteo [3]) são
+públicas e gratuitas. Configurações opcionais ficam no arquivo `.env`, que está no `.gitignore` e nunca vai para o
+repositório (modelo em `.env.example`). Nenhuma chave ou senha aparece no código.
+
+**Dados usados:** apenas dados **sintéticos** (lote de validação e GPS simulado do caminhão) e **públicos** (imagens
+de vias de uma base aberta, processadas no módulo de visão). Nenhum dado pessoal real é enviado a qualquer API.
 
 ## Evidências de validação
 `python validacao/validar.py` gera um **lote rotulado** com 14 pontos (10 buracos reais e 4 falsos alarmes:
@@ -90,14 +93,33 @@ quadros seguidos numa só ocorrência (efeito de encadeamento do DBSCAN com `min
 agrupamento da câmera deveria considerar também o número do quadro, ou usar um raio menor.
 
 ## Proteção de dados, ética e ODS
-O robô não processa dados pessoais: recebe só coordenadas, confiança da câmera e leituras do sensor. As
-imagens ficam no módulo de visão, e o que chega aqui é apenas o resultado. A decisão é explicável (cada
+O robô recebe apenas coordenadas, a confiança da câmera e leituras do sensor. As imagens ficam no módulo de visão,
+e o que chega aqui é só o resultado. **Coordenadas podem ser dado pessoal** quando permitem localizar uma pessoa,
+por exemplo a frente da casa de alguém. Por isso, o robô trata cada ponto como **ocorrência da via**, sem ligá-lo a
+nenhum cidadão, e envia ao Nominatim apenas a coordenada do buraco, sem nome, e-mail ou identificador de quem
+quer que seja. Se no futuro houver dados pessoais (por exemplo, um cidadão que acompanha a própria reclamação),
+valem os princípios de finalidade, necessidade, segurança e transparência da LGPD [4]. A decisão é explicável (cada
 ponto do escore tem um motivo) e casos duvidosos vão para revisão humana, para que a automação não mande
 equipes à toa nem ignore um problema real. Como o caminhão passa em todas as ruas, bairros que reclamam
 menos deixam de ser esquecidos (**ODS 10**). Vias mais seguras e mantidas apoiam o **ODS 11** (meta 11.2) e
 o **ODS 9** (meta 9.1).
 
+### Análise crítica de riscos e impacto social
+| Risco | Impacto | Como o robô reduz |
+|---|---|---|
+| Falso positivo (sombra, lombada) vira OS e manda equipe à toa | Desperdício de dinheiro público | OS só com duas evidências (câmera e sensor) ou várias detecções. Caso contrário, revisão humana |
+| Falso negativo (buraco real ignorado) | Acidente, sobretudo com motos e bicicletas | Câmera e sensor são independentes, e o caminhão passa várias vezes. O cidadão ainda pode registrar pelo app |
+| Encadeamento do DBSCAN junta buracos vizinhos | Uma OS cobre dois problemas | Raio de 25 m. A equipe vê todos os pontos da ocorrência na planilha |
+| Prioridade favorecer vias arteriais | Ruas de bairro esperam mais | O tipo de via vale só 5 a 10 pontos de 100. Gravidade e reincidência pesam mais |
+| Dependência de APIs externas | Robô parado se a API cair | Timeout, retentativas, cache e execução sem o dado externo |
+| Automação substituir o julgamento técnico | Decisão errada sem responsável | Escore explicável por fator, log de auditoria e decisão final da subprefeitura |
+
+**Impacto social:** a detecção não depende de quem reclama mais, então bairros periféricos passam a ser atendidos
+pelo mesmo critério que os centrais. A deduplicação reduz o retrabalho de triagem citado pela própria prefeitura.
+
 ## Como executar
+**Requisitos:** Python 3.11 ou superior e internet (para as APIs). Ponto de entrada único: `robo_cidade_em_ordem.py`.
+
 ```bash
 cd 06-rpa
 pip install -r requirements.txt
@@ -108,3 +130,22 @@ python validacao/validar.py                 # testes com lote rotulado e casos d
 Entradas: `entrada/deteccoes_visao.json` (gerado pelo notebook de visão) e `entrada/deteccoes_iot.json`
 (gerado pelo receptor MQTT). Saídas em `saida/`. Para ver no front-end, entre como gestor, abra **Importar
 detecções** e envie `saida/ordens_servico.json`.
+
+**Configurar chaves:** não é necessário. Para trocar a URL da API de clima (usado nos testes de falha), copie
+`.env.example` para `.env` e edite `RPA_URL_CLIMA`.
+
+## Referências
+[1] BNEWS SÃO PAULO. *Mesmo após recapeamento, SP registra quase 52 mil pedidos de tapa-buraco*. 2025. Dados da
+Secretaria Municipal das Subprefeituras. Disponível em:
+https://www.bnewssaopaulo.com.br/noticias/politica/mesmo-apos-recapeamento-sp-registra-quase-52-mil-pedidos-de-tapa-buraco.html
+
+[2] OPENSTREETMAP. *Nominatim: reverse geocoding API* e *Usage Policy*. Disponível em:
+https://nominatim.org/release-docs/latest/api/Reverse/ e https://operations.osmfoundation.org/policies/nominatim/
+
+[3] OPEN-METEO. *Weather Forecast API*. Disponível em: https://open-meteo.com/en/docs
+
+[4] BRASIL. *Lei nº 13.709, de 14 de agosto de 2018* (LGPD), art. 6º. Disponível em:
+https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm
+
+[5] ESTER, M. et al. *A density-based algorithm for discovering clusters in large spatial databases with noise*
+(DBSCAN). Proceedings of KDD, 1996.
