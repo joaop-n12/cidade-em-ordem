@@ -6,10 +6,12 @@ Demonstração local do detector de buracos (para o vídeo), usando o modelo já
 """
 
 import json
+import subprocess
 import time
 from pathlib import Path
 
 import cv2
+import imageio_ffmpeg
 import gradio as gr
 import numpy as np
 from ultralytics import YOLO
@@ -18,6 +20,10 @@ BASE = Path(__file__).resolve().parent
 MODELO = YOLO(str(BASE / "resultados" / "best.pt"))
 METRICAS = json.loads((BASE / "resultados" / "metricas_visao.json").read_text(encoding="utf-8"))
 LIMIAR = float(METRICAS["limiar"])
+
+# aquece o modelo para a primeira medida de FPS nao sair distorcida
+for _ in range(5):
+    MODELO.predict(np.zeros((540, 960, 3), np.uint8), imgsz=640, verbose=False)
 
 
 def analisar(img_bgr, limiar):
@@ -51,11 +57,12 @@ def tela_video(caminho, limiar):
     cap = cv2.VideoCapture(str(caminho))
     fps = cap.get(cv2.CAP_PROP_FPS) or 2
     w, h = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    bruto = BASE / "resultados" / "gradio_bruto.mp4"
     saida = BASE / "resultados" / "gradio_saida.mp4"
-    out = cv2.VideoWriter(str(saida), cv2.VideoWriter_fourcc(*"mp4v"), fps, (w, h))
-    tempos, total, quadros = [], 0, 0
-    t0 = time.perf_counter()
+    out = cv2.VideoWriter(str(bruto), cv2.VideoWriter_fourcc(*"mp4v"), fps, (w, h))
+    tempos, total, quadros, gasto = [], 0, 0, 0.0
     while True:
+        t0 = time.perf_counter()
         ok, frame = cap.read()
         if not ok:
             break
@@ -63,10 +70,15 @@ def tela_video(caminho, limiar):
         tempos.append(ms); total += len(ocs); quadros += 1
         cv2.putText(anotada, f"quadro {quadros}  {len(ocs)} buraco(s)  {1000 / ms:.0f} FPS", (10, 30),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
+        gasto += time.perf_counter() - t0  # gravar o arquivo fica fora da medida
         out.write(anotada)
     cap.release(); out.release()
+    # converte para H.264 para o navegador conseguir tocar
+    subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(), "-y", "-loglevel", "error", "-i", str(bruto),
+                    "-c:v", "libx264", "-pix_fmt", "yuv420p", str(saida)], check=True)
+    bruto.unlink(missing_ok=True)
     return str(saida), (f"{quadros} quadros · {total} detecções · latência média {np.mean(tempos):.1f} ms/quadro · "
-                        f"{1000 / np.mean(tempos):.1f} FPS do modelo · {quadros / (time.perf_counter() - t0):.1f} FPS ponta a ponta")
+                        f"{1000 / np.mean(tempos):.1f} FPS do modelo · {quadros / gasto:.1f} FPS ponta a ponta")
 
 
 m = METRICAS["teste"]

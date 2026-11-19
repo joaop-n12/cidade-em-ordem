@@ -59,7 +59,19 @@ Colab. Melhor resultado na validação: **mAP@0,5 = 0,605**, precisão 0,786, re
 | mAP@0,5 | **0,442** |
 | mAP@0,5:0,95 | **0,221** |
 
-Gráficos: `resultados/BoxPR_curve.png`, `BoxF1_curve.png`, `confusion_matrix.png` e `results.png` (curvas de treino).
+![Curva precisão-recall](resultados/BoxPR_curve.png)
+
+*Figura 1: curva precisão × recall no conjunto de teste (mAP@0,5 = 0,442).*
+
+![Matriz de confusão](resultados/confusion_matrix.png)
+
+*Figura 2: matriz de confusão no teste. A linha "background" mostra os falsos positivos, e a coluna "background"
+os buracos não detectados.*
+
+![Curvas de treino](resultados/results.png)
+
+*Figura 3: perdas e métricas ao longo das 30 épocas de treino. As perdas de validação continuam caindo até o fim
+e o mAP@0,5 ainda subia na última época, então não há sobreajuste e mais épocas (em GPU) devem melhorar o modelo.*
 
 ### Escolha do limiar de confiança
 Rodamos o modelo no teste e calculamos precisão, recall e F1 para cada limiar (acerto = IoU ≥ 0,5):
@@ -81,7 +93,13 @@ abaixo de 0,5 entram como "vistoria", e não como ordem de serviço direta.
 ## 5. Análise de erros
 
 **Acertos típicos:** buracos grandes e de borda bem definida, com água acumulada ou afundamento visível, saem com
-confiança de 0,8 a 0,9 (ver `resultados/teste_previsoes.jpg` × `teste_rotulos.jpg`).
+confiança de 0,8 a 0,9.
+
+![Previsões do modelo e rótulos reais lado a lado](resultados/comparacao_teste.jpg)
+
+*Figura 4: imagens do teste, com as previsões do modelo à esquerda e os rótulos reais à direita. Aparecem os acertos
+em buracos grandes (0,8 a 0,9) e os erros descritos abaixo: buracos pequenos ao fundo que ficam de fora e o buraco
+no asfalto trincado (3ª coluna) que não é detectado.*
 
 **Erros observados:**
 1. **Buracos pequenos e distantes.** Numa rua muito danificada com cerca de 20 buracos anotados, o modelo encontrou
@@ -146,4 +164,4 @@ placa embarcada com acelerador seria suficiente.
 - `app_visao.py`: demonstração local com o modelo treinado. Rode `pip install -r requirements.txt` e depois
   `python app_visao.py`, e abra http://127.0.0.1:7860.
 - `resultados/`: `best.pt` (modelo), `metricas_visao.json`, gráficos, vídeos, `deteccoes_visao.json` e `log_treino.txt`.
-- Vídeo de demonstração: ⬜ link
+- Vídeo de demonstração: https://youtu.be/sp4HV_C52s8

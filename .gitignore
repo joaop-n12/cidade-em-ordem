@@ -27,3 +27,6 @@ Thumbs.db
 # PlatformIO (build local do ESP32)
 .pio/
 02-iot/*.docx
+03-visao-computacional/resultados/gradio_*
+03-visao-computacional/video_bruto/
+03-visao-computacional/*.docx

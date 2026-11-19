@@ -71,4 +71,5 @@ No front-end, entre como **Gestor**, vá em **Importar detecções** e envie `06
 ## Links
 - Vídeo de integração (Governança): ⬜
 - Vídeo de Generative AI: https://www.youtube.com/watch?v=jW51bMjhIdI
+- Vídeo de Visão Computacional: https://youtu.be/sp4HV_C52s8
 - Repositório: https://github.com/joaop-n12/cidade-em-ordem
