@@ -121,4 +121,4 @@ python avaliacao/avaliar.py # avaliação
 Sem chave, o app funciona no **modo extrativo** (recuperação, ferramenta e guardrails ativos, sem redação pelo LLM).
 Para ligar ao front-end: em `01-front-end/.env`, coloque `VITE_RAG_URL=http://localhost:8000/perguntar`.
 
-Vídeo de demonstração: ⬜ link
+Vídeo de demonstração: https://www.youtube.com/watch?v=jW51bMjhIdI
