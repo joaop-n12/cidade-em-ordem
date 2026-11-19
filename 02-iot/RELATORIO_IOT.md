@@ -37,8 +37,8 @@ dois sensores instalado no caminhão **sente** o buraco quando passa por ele. Ni
 ### Origem dos dados
 | Sensor | O que mede | Como vira informação |
 |---|---|---|
-| **MPU6050** (acelerômetro, I²C nos pinos 21/22) | Aceleração nos 3 eixos | Calcula o módulo do vetor em g. Parado/rodando liso ≈ 1 g. Variação ≥ 1,5 g = impacto |
-| **HC-SR04** (ultrassônico, TRIG 5 / ECHO 18), apontado para o asfalto | Distância até o chão | Calibrado no início (≈ 40 cm). Distância maior que a base = depressão. Profundidade = distância − base |
+| **MPU6050** (acelerômetro, I²C em SDA 22 / SCL 23) | Aceleração nos 3 eixos | Calcula o módulo do vetor em g. Parado/rodando liso ≈ 1 g. Variação ≥ 1,5 g = impacto |
+| **HC-SR04** (ultrassônico, TRIG 13 / ECHO 14), apontado para o asfalto | Distância até o chão | Calibrado no início (≈ 40 cm). Distância maior que a base = depressão. Profundidade = distância − base |
 | GPS (simulado no código) | Posição | Rota fixa no Tatuapé (SP), já que o Wokwi não tem módulo GPS |
 
 ### Comunicação MQTT
@@ -61,6 +61,8 @@ Exemplo de mensagem de evento:
 - **Na central:** valida campos e faixas, grava tudo no SQLite e agrupa eventos a menos de 25 m (fórmula de
   Haversine) como o **mesmo buraco**. O buraco é **confirmado** quando a severidade é alta ou quando duas
   passagens diferentes o detectam. Isso reduz falsos positivos, como uma lombada ou uma tampa de bueiro.
+  A cada nova passagem por um buraco já confirmado, a central reenvia o alerta ao motorista, sem duplicar
+  a ordem de serviço nem o aviso no Telegram.
 
 ## 3. Evidências de funcionamento
 
@@ -78,8 +80,31 @@ Testes executados em 18/11/2026 com o broker público `broker.hivemq.com`. Log c
 
 Resultado no banco: 4 leituras válidas, 2 buracos confirmados, status do veículo `online`.
 
-> **Inserir aqui:** prints do Wokwi (circuito e Serial Monitor) mostrando as situações 1 e 4, feitas
-> movendo o slider do MPU6050 (aceleração Z) e o slider de distância do HC-SR04.
+### Simulação no Wokwi (19/11/2026)
+O mesmo fluxo foi repetido com o ESP32 simulado no Wokwi, movendo os sliders do MPU6050 (aceleração Z) e do
+HC-SR04 (distância), com o receptor rodando no computador e ligado ao mesmo broker.
+
+![Circuito no Wokwi com o ESP32 conectado ao broker](evidencias/print1_circuito.png)
+
+*Figura 1: circuito no Wokwi. O Serial Monitor mostra o MPU6050 encontrado, a calibração do ultrassônico (40,3 cm),
+a conexão ao Wi-Fi e ao broker. O LED verde indica MQTT conectado.*
+
+![Rua em bom estado: só telemetria](evidencias/print2_rua_lisa.png)
+
+*Figura 2: situação 1 (rua em bom estado). Leituras de 1 g e profundidade 0 cm: só telemetria a cada 3 s, nenhum
+evento e o LED vermelho apagado.*
+
+![Buraco severo: eventos com severidade alta](evidencias/print3_buraco_severo.png)
+
+*Figura 3: situação 4 (buraco severo). Com a distância em 55,5 cm (15,2 cm abaixo do asfalto), o ESP32 publica
+eventos "possivel_buraco" com severidade **alta**, e o LED vermelho acende. A linha "[MQTT] conectando ao broker... ok"
+mostra a reconexão automática quando o broker público derruba a conexão.*
+
+![ESP32 recebendo o comando e receptor confirmando o buraco](evidencias/print4_receptor.png)
+
+*Figura 4: ciclo completo. Em cima, o ESP32 publica o evento e recebe "[MQTT] comando recebido: alerta_critico".
+Embaixo, o receptor registra cada evento, reconhece o buraco já confirmado (a menos de 25 m) e reenvia o alerta ao
+veículo.*
 
 ## 4. O que foi implementado e o que foi simulado
 

@@ -1,19 +1,5 @@
-/*
- * Cidade em Ordem - Módulo IoT do caminhão de coleta
- * Global Solution 2026.2 - Physical Computing, Embedded AI, Robotics & Cognitive IoT
- *
- * Fluxo: sensores -> ESP32 -> MQTT -> receptor (Python) -> banco SQLite -> alerta / ordem de serviço
- *
- * Sensores:
- *   - MPU6050 (acelerômetro): mede o impacto vertical quando o caminhão passa por um buraco.
- *   - HC-SR04 (ultrassônico), apontado para o asfalto: a distância aumenta quando há um buraco,
- *     o que permite estimar a profundidade.
- * Atuador:
- *   - LED vermelho: acende quando a central confirma um buraco crítico (comando recebido via MQTT).
- *   - LED verde: indica conexão com o broker.
- *
- * A posição GPS é simulada percorrendo uma rota fixa de coleta (o Wokwi não tem módulo GPS).
- */
+// Cidade em Ordem - GS 2026.2
+// ESP32 no caminhao de coleta: MPU6050 + HC-SR04, envia os dados por MQTT
 
 #include <WiFi.h>
 #include <PubSubClient.h>
@@ -22,7 +8,6 @@
 #include <Adafruit_Sensor.h>
 #include <ArduinoJson.h>
 
-// ---------- Configuração ----------
 const char* WIFI_SSID = "Wokwi-GUEST";
 const char* WIFI_PASS = "";
 const char* MQTT_BROKER = "broker.hivemq.com";
@@ -34,37 +19,37 @@ const char* TOPICO_EVENTO     = "cidadeemordem/caminhao-01/evento";
 const char* TOPICO_COMANDO    = "cidadeemordem/caminhao-01/comando";
 const char* TOPICO_STATUS     = "cidadeemordem/caminhao-01/status";
 
-const int PINO_TRIG = 5;
-const int PINO_ECHO = 18;
-const int PINO_LED_ALERTA = 26;
-const int PINO_LED_CONECTADO = 27;
+const int PINO_TRIG = 13;
+const int PINO_ECHO = 14;
+const int PINO_LED_ALERTA = 21;
+const int PINO_LED_CONECTADO = 16;
+const int PINO_SDA = 22;  // I2C do MPU6050
+const int PINO_SCL = 23;
 
-// Limiares de detecção (ajustados para a simulação)
-const float LIMIAR_IMPACTO_G = 1.5;     // variação em relação a 1 g (gravidade)
+// limiares
+const float LIMIAR_IMPACTO_G = 1.5;
 const float LIMIAR_PROFUNDIDADE_CM = 4.0;
 const unsigned long INTERVALO_TELEMETRIA_MS = 3000;
-const unsigned long INTERVALO_MIN_EVENTO_MS = 4000; // evita várias mensagens para o mesmo buraco
+const unsigned long INTERVALO_MIN_EVENTO_MS = 4000; // nao repetir o mesmo buraco
 
-// Rota simulada (R. Tuiuti -> Av. Celso Garcia, Tatuapé - SP)
+// rota simulada (o Wokwi nao tem GPS)
 const double ROTA[][2] = {
   {-23.53980, -46.57710}, {-23.54020, -46.57630}, {-23.54080, -46.57520},
   {-23.54150, -46.57400}, {-23.54230, -46.57280}, {-23.54310, -46.57120},
 };
 const int TAMANHO_ROTA = sizeof(ROTA) / sizeof(ROTA[0]);
 
-// ---------- Estado ----------
 WiFiClient wifiClient;
 PubSubClient mqtt(wifiClient);
 Adafruit_MPU6050 mpu;
 bool mpuOk = false;
 
-float distanciaBaseCm = 40.0;  // distância do sensor ao asfalto sem buraco (calibrada no início)
+float distanciaBaseCm = 40.0;  // calibrada no setup
 unsigned long ultimoEnvio = 0;
 unsigned long ultimoEvento = 0;
 unsigned long sequencia = 0;
 int pontoRota = 0;
 
-// ---------- Sensores ----------
 float lerDistanciaCm() {
   digitalWrite(PINO_TRIG, LOW);
   delayMicroseconds(2);
@@ -72,7 +57,7 @@ float lerDistanciaCm() {
   delayMicroseconds(10);
   digitalWrite(PINO_TRIG, LOW);
   long duracao = pulseIn(PINO_ECHO, HIGH, 30000);  // timeout 30 ms
-  if (duracao == 0) return -1;                     // leitura inválida
+  if (duracao == 0) return -1;
   return duracao * 0.0343 / 2.0;
 }
 
@@ -80,7 +65,6 @@ float lerAceleracaoG() {
   if (!mpuOk) return 1.0;
   sensors_event_t a, g, temp;
   mpu.getEvent(&a, &g, &temp);
-  // Módulo do vetor aceleração em g (9.80665 m/s² = 1 g)
   float mod = sqrt(a.acceleration.x * a.acceleration.x +
                    a.acceleration.y * a.acceleration.y +
                    a.acceleration.z * a.acceleration.z);
@@ -99,7 +83,6 @@ void calibrar() {
   Serial.printf("[CALIBRACAO] distancia base ao asfalto = %.1f cm\n", distanciaBaseCm);
 }
 
-// ---------- Rede ----------
 void conectarWiFi() {
   Serial.print("[WIFI] conectando");
   WiFi.begin(WIFI_SSID, WIFI_PASS);
@@ -121,7 +104,6 @@ void aoReceberComando(char* topico, byte* payload, unsigned int tamanho) {
   const char* acao = doc["acao"] | "";
   Serial.printf("[MQTT] comando recebido: %s\n", acao);
   if (strcmp(acao, "alerta_critico") == 0) {
-    // Pisca o LED para avisar o motorista de que o ponto foi registrado como crítico.
     for (int i = 0; i < 6; i++) {
       digitalWrite(PINO_LED_ALERTA, i % 2 == 0);
       delay(150);
@@ -137,7 +119,7 @@ void conectarMQTT() {
     if (WiFi.status() != WL_CONNECTED) conectarWiFi();
     String clientId = String("cidadeemordem-") + ID_VEICULO + "-" + String(random(0xffff), HEX);
     Serial.print("[MQTT] conectando ao broker... ");
-    // Last Will: se o ESP32 cair, o broker publica "offline" no tópico de status.
+    // last will -> offline
     if (mqtt.connect(clientId.c_str(), TOPICO_STATUS, 1, true, "{\"status\":\"offline\"}")) {
       Serial.println("ok");
       mqtt.publish(TOPICO_STATUS, "{\"status\":\"online\"}", true);
@@ -151,7 +133,6 @@ void conectarMQTT() {
   }
 }
 
-// ---------- Publicação ----------
 void publicar(const char* topico, float g, float distancia, float profundidade, const char* tipo, const char* severidade) {
   StaticJsonDocument<384> doc;
   doc["veiculo"] = ID_VEICULO;
@@ -171,7 +152,6 @@ void publicar(const char* topico, float g, float distancia, float profundidade, 
   Serial.printf("[PUB %s] %s %s\n", ok ? "ok" : "FALHA", topico, buffer);
 }
 
-// ---------- Programa principal ----------
 void setup() {
   Serial.begin(115200);
   pinMode(PINO_TRIG, OUTPUT);
@@ -179,6 +159,7 @@ void setup() {
   pinMode(PINO_LED_ALERTA, OUTPUT);
   pinMode(PINO_LED_CONECTADO, OUTPUT);
 
+  Wire.begin(PINO_SDA, PINO_SCL);
   mpuOk = mpu.begin();
   if (mpuOk) {
     mpu.setAccelerometerRange(MPU6050_RANGE_8_G);
@@ -208,7 +189,6 @@ void loop() {
   float profundidade = max(0.0f, distancia - distanciaBaseCm);
   float variacaoG = fabs(g - 1.0);
 
-  // Detecção na borda (Edge): só envia evento quando os sensores indicam buraco.
   bool impacto = variacaoG >= LIMIAR_IMPACTO_G;
   bool depressao = profundidade >= LIMIAR_PROFUNDIDADE_CM;
   unsigned long agora = millis();
@@ -222,7 +202,7 @@ void loop() {
   if (agora - ultimoEnvio > INTERVALO_TELEMETRIA_MS) {
     publicar(TOPICO_TELEMETRIA, g, distancia, profundidade, "telemetria", nullptr);
     ultimoEnvio = agora;
-    pontoRota = (pontoRota + 1) % TAMANHO_ROTA;  // caminhão avança na rota
+    pontoRota = (pontoRota + 1) % TAMANHO_ROTA;
   }
 
   delay(100);

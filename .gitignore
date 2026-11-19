@@ -23,3 +23,7 @@ Thumbs.db
 07-cluster-memristor/ROTEIRO_FALSTAD.md
 06-rpa/*.docx
 08-computacao-quantica/*.docx
+
+# PlatformIO (build local do ESP32)
+.pio/
+02-iot/*.docx

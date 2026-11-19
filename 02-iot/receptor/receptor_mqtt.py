@@ -1,19 +1,6 @@
-"""
-Cidade em Ordem - Receptor MQTT da central (componente que recebe os dados do ESP32).
+"""Receptor MQTT: recebe os dados do ESP32, grava no SQLite e confirma os buracos.
 
-Assina os tópicos do caminhão, valida cada mensagem, grava no banco SQLite e
-decide a resposta ao cidadão/prefeitura:
-  - evento "possivel_buraco" -> procura buraco já registrado a menos de 25 m
-    (mesmo buraco visto de novo = reincidência) ou cria um novo;
-  - severidade alta ou 2+ passagens no mesmo ponto -> buraco CONFIRMADO:
-      * publica comando "alerta_critico" de volta ao ESP32 (LED acende),
-      * envia alerta pelo Telegram (se configurado),
-      * exporta o ponto para 06-rpa/entrada/deteccoes_iot.json (o robô abre a ordem de serviço).
-
-Uso:
-    pip install -r requirements.txt
-    python receptor_mqtt.py
-Variáveis opcionais (arquivo .env ou ambiente): TELEGRAM_TOKEN, TELEGRAM_CHAT_ID, MQTT_BROKER.
+Uso: python receptor_mqtt.py
 """
 
 import json
@@ -48,7 +35,6 @@ log = logging.getLogger("receptor")
 
 
 def carregar_env():
-    """Lê um arquivo .env simples (chaves ficam fora do código)."""
     env = BASE / ".env"
     if env.exists():
         for linha in env.read_text(encoding="utf-8").splitlines():
@@ -83,7 +69,7 @@ def conectar_db():
 
 
 def distancia_m(lat1, lon1, lat2, lon2):
-    """Distância em metros entre dois pontos (fórmula de Haversine)."""
+    # haversine, em metros
     r = 6371000
     p1, p2 = math.radians(lat1), math.radians(lat2)
     dp, dl = math.radians(lat2 - lat1), math.radians(lon2 - lon1)
@@ -111,12 +97,11 @@ def enviar_telegram(texto):
         dados = urllib.parse.urlencode({"chat_id": chat, "text": texto}).encode()
         urllib.request.urlopen(f"https://api.telegram.org/bot{token}/sendMessage", dados, timeout=10)
         log.info("Alerta enviado ao Telegram")
-    except Exception as e:  # caminho seguro: falha no Telegram não derruba o receptor
+    except Exception as e:
         log.warning("Falha ao enviar Telegram (%s) - alerta mantido no log", e)
 
 
 def exportar_para_rpa(con):
-    """Gera o arquivo que o robô RPA lê para abrir ordens de serviço."""
     linhas = con.execute(
         "SELECT id, lat, lon, primeira_deteccao, ultima_deteccao, passagens, maior_impacto_g, maior_profundidade_cm, status "
         "FROM buracos ORDER BY id"
@@ -178,6 +163,10 @@ def tratar_evento(cliente, con, msg, veiculo):
             f"Impacto {g:.1f} g | profundidade {prof:.0f} cm | {passagens} passagem(ns).\n"
             f"Ordem de serviço será aberta pelo robô."
         )
+    elif confirmado:
+        # ja confirmado: so avisa o motorista de novo
+        log.warning("Buraco #%s ja confirmado - nova passagem (%d), alerta reenviado ao veiculo", bid, passagens)
+        cliente.publish(f"cidadeemordem/{veiculo}/comando", json.dumps({"acao": "alerta_critico", "buraco_id": bid}), qos=1)
     else:
         log.info("Buraco #%s %s (passagens=%d)", bid, "registrado como suspeito" if passagens == 1 else "atualizado", passagens)
 

@@ -1,17 +1,4 @@
-"""
-Simulador do ESP32 em Python: publica exatamente as mesmas mensagens que o
-sketch do Wokwi. Serve para testar o receptor sem abrir o Wokwi e para gerar
-as situações de teste do relatório de forma repetível.
-
-Situações publicadas:
-  1. Rua em bom estado        -> telemetria normal (1,0 g, sem profundidade)
-  2. Buraco moderado          -> evento, severidade "moderada" (fica como suspeito)
-  3. Mesmo buraco, 2ª passagem -> reincidência, buraco CONFIRMADO
-  4. Buraco severo novo        -> evento "alta", CONFIRMADO na hora
-  5. Mensagem corrompida       -> receptor descarta e registra no log
-
-Uso: python simulador_esp32.py
-"""
+"""Publica as mesmas mensagens do ESP32 para testar o receptor sem o Wokwi."""
 
 import json
 import os

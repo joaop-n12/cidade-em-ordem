@@ -1,4 +1,4 @@
-"""Mostra o conteúdo do banco SQLite do receptor (evidência de armazenamento)."""
+"""Mostra o que esta salvo no banco do receptor."""
 
 import sqlite3
 from pathlib import Path
