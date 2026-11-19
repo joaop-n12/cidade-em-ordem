@@ -229,7 +229,7 @@ def converter(md_path, docx_path, abnt):
         capa_abnt(doc, meta, quadros)
     else:
         titulo = next((l.lstrip("# ").strip() for l in linhas if l.startswith("# ")), md_path.stem)
-        capa_completa(doc, titulo, DISCIPLINAS.get(md_path.parent.name, ""))
+        capa_completa(doc, re.sub(r"^Cidade em Ordem:s*", "", titulo).capitalize() if titulo.startswith("Cidade em Ordem:") else titulo, DISCIPLINAS.get(md_path.parent.name, ""))
         # remove o título e o bloco de identificação (disciplina, integrantes) que já estão na capa
         ini = next(k for k, l in enumerate(linhas) if l.startswith("# "))
         fim = next((k for k, l in enumerate(linhas) if k > ini and l.startswith("## ")), ini + 1)
