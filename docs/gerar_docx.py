@@ -124,6 +124,54 @@ def capa_abnt(doc, meta, quadros):
     quebra(doc)
 
 
+DISCIPLINAS = {
+    "02-iot": "Physical Computing, Embedded AI, Robotics & Cognitive IoT",
+    "03-visao-computacional": "Visão Computacional",
+    "04-nlp": "Processamento de Linguagem Natural",
+    "05-generative-ai": "Generative AI and Advanced Nets",
+    "06-rpa": "AI for Robotic Process Automation",
+    "07-cluster-memristor": "Cluster Computing, Computação Neuromórfica e Supercomputadores",
+    "08-computacao-quantica": "Computação Quântica & IA",
+}
+INTEGRANTES = [("João Pedro de Souza Nunes", "RM567318"), ("Guilherme Nakamura", "RM567460")]
+
+
+def linha_cor(doc, cor="0B5CAD", espessura=12):
+    """Linha horizontal colorida (borda inferior de um parágrafo vazio)."""
+    p = doc.add_paragraph(); p.paragraph_format.first_line_indent = Cm(0)
+    pPr = p._p.get_or_add_pPr(); bdr = OxmlElement("w:pBdr"); b = OxmlElement("w:bottom")
+    for k, v in (("w:val", "single"), ("w:sz", str(espessura)), ("w:space", "1"), ("w:color", cor)):
+        b.set(qn(k), v)
+    bdr.append(b); pPr.append(bdr)
+
+
+def capa_completa(doc, titulo, disciplina):
+    from docx.shared import RGBColor
+    azul = RGBColor(0x0B, 0x5C, 0xAD)
+    def linha(texto, tam=12, negrito=False, cor=None, antes=0, depois=0):
+        p = doc.add_paragraph(); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        pf = p.paragraph_format; pf.first_line_indent = Cm(0); pf.space_before = Pt(antes); pf.space_after = Pt(depois)
+        pf.line_spacing = 1.15
+        r = p.add_run(texto); r.font.size = Pt(tam); r.bold = negrito
+        if cor:
+            r.font.color.rgb = cor
+        return p
+    linha("FIAP - FACULDADE DE INFORMÁTICA E ADMINISTRAÇÃO PAULISTA", 12, True)
+    linha("Tecnologia em Inteligência Artificial", 11)
+    linha("Global Solution 2026.2 · CitizenTech", 11, depois=6)
+    linha_cor(doc)
+    linha(disciplina.upper(), 11, True, azul, antes=60)
+    linha("CIDADE EM ORDEM", 28, True, azul, antes=40)
+    linha("A cidade encontra o buraco antes de você precisar reclamar", 12, cor=RGBColor(0x4A, 0x55, 0x68), depois=30)
+    linha(titulo, 15, True, antes=10)
+    linha("Integrantes", 11, True, antes=90, depois=4)
+    for nome, rm in INTEGRANTES:
+        linha(f"{nome} · {rm}", 11)
+    linha("São Paulo", 11, antes=110)
+    linha("2026", 11)
+    quebra(doc)
+
+
 def capa_simples(doc, titulo):
     centro(doc, "FIAP - TECNOLOGIA EM INTELIGÊNCIA ARTIFICIAL", True)
     centro(doc, "Global Solution 2026.2 - CitizenTech - Cidade em Ordem")
@@ -150,6 +198,24 @@ def tabela(doc, linhas, com_fonte=False):
         fonte.paragraph_format.first_line_indent = Cm(0); fonte.runs[0].font.size = Pt(10)
 
 
+def inicia_bloco(l):
+    """A linha começa um novo bloco (título, lista, tabela, imagem...)?"""
+    s = l.strip()
+    return (not s or s.startswith(("#", "|", "```", ">", "![", "[QUADRO", "[FIGURA", "---"))
+            or re.match(r"^[-*] ", s) or re.match(r"^\d+\. ", s))
+
+
+def juntar(linhas, i, texto, so_indentadas=False):
+    """Junta as linhas seguintes do mesmo parágrafo (o Markdown quebra linhas longas)."""
+    while i + 1 < len(linhas):
+        prox = linhas[i + 1]
+        if inicia_bloco(prox) or (so_indentadas and not prox.startswith((" ", "\t"))):
+            break
+        i += 1
+        texto += " " + prox.strip()
+    return texto, i
+
+
 def converter(md_path, docx_path, abnt):
     texto = md_path.read_text(encoding="utf-8")
     meta = {}
@@ -164,8 +230,11 @@ def converter(md_path, docx_path, abnt):
         capa_abnt(doc, meta, quadros)
     else:
         titulo = next((l.lstrip("# ").strip() for l in linhas if l.startswith("# ")), md_path.stem)
-        capa_simples(doc, titulo)
-        linhas = [l for l in linhas if not (l.startswith("# ") and l.lstrip("# ").strip() == titulo)]
+        capa_completa(doc, titulo, DISCIPLINAS.get(md_path.parent.name, ""))
+        # remove o título e o bloco de identificação (disciplina, integrantes) que já estão na capa
+        ini = next(k for k, l in enumerate(linhas) if l.startswith("# "))
+        fim = next((k for k, l in enumerate(linhas) if k > ini and l.startswith("## ")), ini + 1)
+        linhas = linhas[:ini] + linhas[fim:]
     i = 0
     while i < len(linhas):
         l = linhas[i]
@@ -199,21 +268,28 @@ def converter(md_path, docx_path, abnt):
                 quebra(doc) if titulo not in ("1 INTRODUÇÃO",) else None
             doc.add_heading(titulo.upper() if nivel == 1 else titulo, level=nivel)
         elif re.match(r"^\s*[-*] ", l):
+            texto, i = juntar(linhas, i, re.sub(r"^\s*[-*] ", "", l), so_indentadas=True)
             p = doc.add_paragraph(style="List Bullet"); p.paragraph_format.first_line_indent = Cm(0)
-            texto_rico(p, re.sub(r"^\s*[-*] ", "", l))
+            texto_rico(p, texto)
         elif re.match(r"^\d+\. ", l):
+            texto, i = juntar(linhas, i, re.sub(r"^\d+\. ", "", l), so_indentadas=True)
             p = doc.add_paragraph(style="List Number"); p.paragraph_format.first_line_indent = Cm(0)
-            texto_rico(p, re.sub(r"^\d+\. ", "", l))
+            texto_rico(p, texto)
         elif l.startswith(">"):
+            texto = l.lstrip("> ")
+            while i + 1 < len(linhas) and linhas[i + 1].startswith(">"):
+                i += 1; texto += " " + linhas[i].lstrip("> ")
             p = doc.add_paragraph(); p.paragraph_format.left_indent = Cm(4); p.paragraph_format.first_line_indent = Cm(0)
             p.paragraph_format.line_spacing = 1.0
-            texto_rico(p, l.lstrip("> ")); [setattr(r.font, "size", Pt(10)) for r in p.runs]
+            texto_rico(p, texto); [setattr(r.font, "size", Pt(10)) for r in p.runs]
         elif l.strip() and not l.startswith("---"):
+            texto, i = juntar(linhas, i, l.strip())
             p = doc.add_paragraph(); p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-            texto_rico(p, l.strip())
+            texto_rico(p, texto)
         i += 1
     # numeração de página no canto superior direito (ABNT)
     for s in doc.sections:
+        s.different_first_page_header_footer = True  # sem número na capa
         p = s.header.paragraphs[0]; p.alignment = WD_ALIGN_PARAGRAPH.RIGHT; campo(p, "PAGE")
     doc.save(docx_path)
     print("gerado:", docx_path.relative_to(RAIZ))
