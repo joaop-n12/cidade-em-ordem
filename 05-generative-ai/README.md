@@ -75,17 +75,19 @@ Resposta + fontes + trechos (painel técnico no Gradio)
 24 perguntas com resposta esperada: 18 de conteúdo (5 documentos), 2 de status de rua, 2 de emergência, 2 fora do
 tema e 1 com dados pessoais. Resultados completos em `avaliacao/`.
 
-| Métrica | v1: só vetorial | **v2: híbrida (vetorial + BM25)** |
-|---|---|---|
-| Roteamento correto | 24/24 (100%) | **24/24 (100%)** |
-| Fonte certa entre os 4 trechos (acerto@4) | 16/18 (89%) | **18/18 (100%)** |
-| Resposta com as palavras-chave esperadas | 20/24 (83%) | **23/24 (96%)** |
-| Respostas RAG com citação [n] | 18/18 | 18/18 |
-| Número sem suporte no contexto | 0/18 | 0/18 |
+| Métrica | v1: só vetorial | **v2: híbrida (vetorial + BM25)** | v2 com LLM (Gemini) |
+|---|---|---|---|
+| Roteamento correto | 24/24 (100%) | **24/24 (100%)** | 24/24 (100%) |
+| Fonte certa entre os 4 trechos (acerto@4) | 16/18 (89%) | **18/18 (100%)** | 18/18 (100%) |
+| Resposta com as palavras-chave esperadas | 20/24 (83%) | **23/24 (96%)** | 21/24 (88%) |
+| Respostas RAG com citação [n] | 18/18 | 18/18 | 18/18 |
+| Número sem suporte no contexto | 0/18 | 0/18 | 1/18 |
 
-*Medido no modo extrativo (sem LLM), que isola a qualidade da recuperação e do roteamento.* ⬜ **Rodar
-`python avaliacao/avaliar.py` com a chave do Gemini no `.env` e colar aqui a coluna "com LLM"** (arquivo
-`avaliacao/resultados_llm.md`).
+As duas primeiras colunas foram medidas no modo extrativo (sem LLM), que isola a qualidade da recuperação e do
+roteamento. A terceira usa o Gemini (`gemini-3-flash-preview`) para redigir a resposta; o resultado completo está em
+`avaliacao/resultados_llm.md`. Com o LLM, a resposta fica mais fácil de ler, mas em 3 perguntas a resposta não trouxe o
+termo exato esperado (por isso caem as palavras-chave) e em 1 resposta citou um número que não estava nos trechos. Esse
+caso é justamente o que a verificação de números sinaliza.
 
 **Análise dos erros da v1:** para "O que é acessibilidade pela lei?", a busca vetorial trouxe um trecho do CTB
 sobre "recusar-se a entregar documentos à autoridade". O modelo de embedding pequeno aproximou "acessibilidade"

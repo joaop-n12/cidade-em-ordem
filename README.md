@@ -45,7 +45,7 @@ responde com base nas leis.
 | [06-rpa](06-rpa) | AI for Robotic Process Automation | Robô de ponta a ponta: validação, DBSCAN, APIs, Excel, idempotência, revisão humana |
 | [07-cluster-memristor](07-cluster-memristor) | Cluster, Computação Neuromórfica e Supercomputadores | Simulação de memristor no Falstad para registrar impactos |
 | [08-computacao-quantica](08-computacao-quantica) | Computação Quântica & IA | Gargalo, capacidade quântica (otimização) e roadmap realista |
-| [09-governanca](09-governanca) | Governança em IA e Business Analytics | Documento de integração (ABNT) e roteiro do vídeo |
+| [09-governanca](09-governanca) | Governança em IA e Business Analytics | Documento de integração (ABNT), em PDF, e figuras |
 
 ## Como rodar a demonstração integrada
 ```bash
@@ -69,7 +69,7 @@ No front-end, entre como **Gestor**, vá em **Importar detecções** e envie `06
 **10** Redução das desigualdades · **13** Ação climática (prioridade maior com chuva prevista)
 
 ## Links
-- Vídeo de integração (Governança): ⬜
+- Vídeo de integração (Governança): https://youtu.be/Gq5Ohxh--7Q
 - Vídeo de Generative AI: https://www.youtube.com/watch?v=jW51bMjhIdI
 - Vídeo de Visão Computacional: https://youtu.be/sp4HV_C52s8
 - Vídeo de PLN: https://youtu.be/ElWzSAD4eRU

@@ -37,7 +37,8 @@ A solução tem quatro camadas: coleta de dados no caminhão (câmera e sensor),
 | Robô RPA | Ordens de serviço priorizadas | Front-end e assistente | ordens_servico.json e .xlsx |
 | Front-end | Pergunta do cidadão | Assistente | POST /perguntar |
 
-[FIGURA 1 - Arquitetura da solução (inserir print do diagrama do README do repositório)]
+[FIGURA 1 - Arquitetura da solução]
+![Fonte: elaborado pelos autores (2026).](figuras/arquitetura.png)
 
 ## 2.2 Front End & Mobile Development
 
@@ -45,25 +46,21 @@ O aplicativo foi feito em React com Vite. Ele tem login local, com senha guardad
 
 O processamento inteligente está no módulo de classificação. Ele recebe a confiança da câmera, o impacto e a profundidade do sensor, o tipo de via, a previsão de chuva, as detecções anteriores e a descrição em texto, e devolve um escore de 0 a 100, a prioridade, o prazo, a secretaria responsável e a ação a tomar. Cada ponto do escore aparece na tela com o motivo, para que o gestor entenda a decisão. Quando a evidência é fraca, a ação gerada é uma vistoria, e não a ordem de serviço.
 
+[FIGURA 2 - Detalhe de uma ocorrência importada do robô, com a decisão explicada ponto a ponto]
+![Fonte: elaborado pelos autores (2026).](figuras/app_decisao.png)
+
 Foram tratados acessibilidade (HTML semântico, rótulos em todos os campos, navegação por teclado, link para pular ao conteúdo e botão para aumentar a fonte) e proteção de dados (só nome e e-mail, consentimento no cadastro e botão para apagar a conta).
 
 ## 2.3 Physical Computing, Embedded AI, Robotics & Cognitive IoT
 
 O módulo IoT foi simulado no Wokwi com um ESP32, um acelerômetro MPU6050 e um sensor ultrassônico HC-SR04 apontado para o asfalto. O acelerômetro mede o impacto quando o caminhão passa por um buraco, e o ultrassônico estima a profundidade pela diferença em relação à distância calibrada.
 
-O ESP32 publica telemetria a cada 3 segundos e um evento imediato quando os sensores indicam buraco. A comunicação usa MQTT com quatro tópicos: telemetria, evento, status (com Last Will) e comando. Um receptor em Python valida as mensagens, grava tudo em SQLite e junta eventos a menos de 25 metros como o mesmo buraco. Quando o buraco é confirmado, o receptor envia um comando de volta e o LED vermelho do ESP32 acende.
+O ESP32 publica telemetria a cada 3 segundos e um evento imediato quando os sensores indicam buraco. A comunicação usa MQTT com quatro tópicos: telemetria, evento, status (com Last Will) e comando. Um receptor em Python valida as mensagens, grava tudo em SQLite e junta eventos a menos de 25 metros como o mesmo buraco. Quando o buraco é confirmado, o receptor envia um comando de volta e o LED vermelho do ESP32 acende. Nas passagens seguintes pelo mesmo buraco o comando é enviado de novo, para que o motorista seja avisado toda vez.
 
-Os testes com o broker público mostraram seis situações: rua em bom estado, buraco moderado, segunda passagem no mesmo buraco (confirmação), buraco severo, mensagem corrompida e leitura fora da faixa. As duas últimas foram rejeitadas sem parar o receptor.
+Os testes com o broker público cobriram seis situações: rua em bom estado (1,01 g, gravado sem alerta), buraco moderado (2,2 g e 6 cm, registrado como suspeito), segunda passagem no mesmo ponto (confirmado e comando enviado), buraco severo (3,4 g e 13 cm, confirmado na primeira passagem), mensagem corrompida e leitura de 99 g. As duas últimas foram rejeitadas sem parar o receptor.
 
-[QUADRO 2 - Testes do módulo IoT]
-| Entrada | Resultado |
-|---|---|
-| 1,01 g e 0,1 cm | Gravado, sem alerta |
-| 2,2 g e 6 cm | Buraco registrado como suspeito |
-| 2,4 g e 6,5 cm no mesmo ponto | Buraco confirmado e comando enviado ao ESP32 |
-| 3,4 g e 13 cm | Confirmado na primeira passagem |
-| Texto inválido | Descartado com registro no log |
-| 99 g | Rejeitado pela validação |
+[FIGURA 3 - Simulação no Wokwi: evento de buraco enviado por MQTT e LED vermelho aceso pelo comando da central]
+![Fonte: elaborado pelos autores (2026).](../02-iot/evidencias/print4_receptor.png)
 
 ## 2.4 Visão Computacional
 
@@ -71,7 +68,7 @@ O nicho escolhido foi infraestrutura e pavimentação, com a detecção de burac
 
 Ao analisar a base, vimos que as 819 imagens vinham de apenas 269 fotos originais, porque a ferramenta de anotação gera variações de cada foto. Se a divisão fosse feita por imagem, variações da mesma foto ficariam no treino e no teste, e as métricas sairiam infladas. Por isso agrupamos por foto original antes de dividir em 70% treino, 15% validação e 15% teste.
 
-[QUADRO 3 - Resultados no conjunto de teste]
+[QUADRO 2 - Resultados no conjunto de teste]
 | Métrica | Valor |
 |---|---|
 | Precisão | 0,611 |
@@ -84,13 +81,13 @@ Ao analisar a base, vimos que as 819 imagens vinham de apenas 269 fotos originai
 
 O resultado é suficiente para triagem com confirmação, mas não para decidir sozinho. Os buracos do teste são menores que os da validação (área mediana de 1,9% contra 4,9% da imagem), e o modelo perde principalmente buracos pequenos e distantes e buracos no meio de asfalto trincado. No teste de robustez, o recall caiu 6% com desfoque, 11% com sombra, 28% com luz estourada e 56% com obstrução parcial. A obstrução pesa menos na prática, porque o caminhão passa pela mesma rua várias vezes por semana.
 
-Processamos também uma sequência de imagens como se fosse o vídeo do trajeto do caminhão. Cada detecção recebe a posição GPS simulada e vai para o robô RPA.
+Processamos também uma sequência de imagens como se fosse o vídeo do trajeto do caminhão. Cada detecção recebe a posição GPS simulada e vai para o robô RPA. Para a demonstração, foi feita uma interface em Gradio que analisa uma foto ou o vídeo do trajeto e mostra a confiança de cada buraco e a recomendação (abrir ordem de serviço ou enviar para vistoria).
 
 ## 2.5 Processamento de Linguagem Natural
 
 Construímos uma ferramenta que transforma documentos públicos em corpus para o ajuste fino de um modelo de linguagem pequeno, que poderia rodar nos servidores da prefeitura sem enviar dados para a nuvem. Foram usados cinco documentos oficiais: a cartilha de calçadas da Prefeitura de São Paulo (PDF), o Código de Trânsito Brasileiro e a Lei Brasileira de Inclusão (HTML), a Lei Municipal 15.442/2011 sobre calçadas (DOCX) e a Política Nacional de Resíduos Sólidos (TXT).
 
-A limpeza corrigiu problemas reais dos arquivos, como letras trocadas pela fonte do PDF, cabeçalhos com número de página, anotações de alteração das leis e versões antigas de artigos. A anonimização mascara CPF, e-mail, telefone e nomes. Na primeira versão, o reconhecimento de nomes marcou termos como "Distrito Federal" como pessoa. Criamos um filtro para corrigir isso.
+A limpeza corrigiu problemas reais dos arquivos, como letras trocadas pela fonte do PDF, cabeçalhos com número de página, anotações de alteração das leis e versões antigas de artigos. A anonimização mascara CPF, e-mail, telefone e nomes. Na primeira versão, o reconhecimento de nomes marcou termos como "Distrito Federal" como pessoa. Criamos um filtro para corrigir isso. A interface da ferramenta mostra o texto antes e depois da anonimização, o que facilita conferir o que foi mascarado.
 
 Foram gerados 287 trechos de texto, 183 pares de pergunta e resposta e 46 diálogos, todos acima dos mínimos pedidos. As respostas foram extraídas das definições das leis ou escritas pelo grupo, e uma verificação automática confirmou que todos os números citados existem nos documentos.
 
@@ -100,17 +97,24 @@ O assistente do cidadão usa RAG (geração aumentada por recuperação) com Lan
 
 Antes de qualquer chamada ao modelo, o texto passa por proteções: dados pessoais são mascarados, mensagens de emergência recebem os telefones do SAMU, Bombeiros e Defesa Civil, e perguntas fora do tema são recusadas sem chamar o modelo. Depois da resposta, o sistema confere se os números citados aparecem nos trechos recuperados.
 
-[QUADRO 4 - Avaliação do assistente com 24 perguntas]
-| Métrica | Só vetorial | Busca híbrida |
-|---|---|---|
-| Roteamento correto | 24/24 | 24/24 |
-| Fonte correta entre os 4 trechos | 16/18 | 18/18 |
-| Resposta com as palavras-chave esperadas | 20/24 | 23/24 |
-| Números sem suporte no contexto | 0/18 | 0/18 |
+[QUADRO 3 - Avaliação do assistente com 24 perguntas]
+| Métrica | Só vetorial | Busca híbrida | Híbrida com LLM (Gemini) |
+|---|---|---|---|
+| Roteamento correto | 24/24 | 24/24 | 24/24 |
+| Fonte correta entre os 4 trechos | 16/18 | 18/18 | 18/18 |
+| Resposta com as palavras-chave esperadas | 20/24 | 23/24 | 21/24 |
+| Números sem suporte no contexto | 0/18 | 0/18 | 1/18 |
+
+As duas primeiras colunas foram medidas sem LLM, no modo extrativo, para avaliar só a busca e o roteamento. Com o Gemini redigindo as respostas, o texto fica mais simples para o cidadão, mas em 3 perguntas a resposta não trouxe o termo exato esperado e em 1 delas apareceu um número que não estava nos trechos. Esse é o tipo de caso que a verificação de números sinaliza, e mostra por que a resposta precisa vir sempre com a fonte.
+
+[FIGURA 4 - Assistente respondendo com base na lei e consultando a ordem de serviço da Rua Catiguá]
+![Fonte: elaborado pelos autores (2026).](figuras/assistente.png)
 
 ## 2.7 AI for Robotic Process Automation
 
 O robô roda de ponta a ponta a partir de um único script. Ele lê as detecções da câmera e do sensor, rejeita registros inválidos, agrupa as detecções do mesmo buraco com o algoritmo DBSCAN (raio de 25 metros), busca o endereço e o tipo de via no OpenStreetMap e a previsão de chuva no Open-Meteo, calcula a prioridade e decide entre abrir uma ordem de serviço ou mandar o caso para revisão humana. As saídas são uma planilha Excel, um relatório HTML, um arquivo para o front-end e um log.
+
+Na execução com os dados da câmera e do sensor, o robô recebeu 66 detecções e gerou 5 ordens de serviço, porque a maior parte eram passagens repetidas pelos mesmos buracos. As duas ordens críticas, na Rua Catiguá e na Rua Padre Estevão Pernet, foram as confirmadas pelas duas fontes.
 
 O robô trata falhas previsíveis: arquivo ausente, JSON corrompido, API fora do ar (com até três tentativas e espera crescente) e planilha aberta. Ele também é idempotente: uma ocorrência que já gerou ordem de serviço não gera outra na execução seguinte.
 
@@ -120,7 +124,7 @@ Num lote de teste rotulado com 10 buracos e 4 falsos alarmes, o robô acertou as
 
 Investigamos, por simulação no Falstad, se um memristor poderia guardar o registro de impactos repetidos no mesmo trecho de rua. Um pulso positivo representa um impacto e reduz a resistência. Sem tensão, a resistência deve permanecer. Um pulso negativo representaria o reparo e devolve a resistência ao valor alto.
 
-Na simulação, o memristor começou em 16 kΩ. Com +1 V, a resistência caiu para 100 Ω e ficou em 100 Ω quando a tensão foi retirada, o que mostra a memória sem energia. Com +3 V, o estado final foi o mesmo, e só a corrente mudou (15 mA contra 5 mA), porque o dispositivo já estava no valor mínimo. Um pulso de −3 V voltou a resistência para 16 kΩ, e esse valor também se manteve sem tensão. Com os parâmetros padrão, a troca acontece em menos de um milissegundo, então o memristor funcionou como um marcador de "impacto registrado ou não", e não como um contador de impactos.
+Na simulação, o memristor começou em 16 kΩ. Com +1 V, a resistência caiu para 100 Ω e continuou em 100 Ω sem tensão, o que mostra a memória sem energia. Um pulso de −3 V voltou a resistência para 16 kΩ, valor que também se manteve. Como a troca acontece em menos de um milissegundo, o memristor funcionou como um marcador de "impacto registrado ou não", e não como um contador.
 
 A ideia para o projeto é ter um contador de impactos que não perde o registro se o equipamento do caminhão desligar. Isso continua no nível de estudo: não foi construído hardware.
 
@@ -134,7 +138,7 @@ O roadmap é conservador. Hoje a solução usa apenas métodos clássicos, que r
 
 ### 2.10.1 Materiais integrados e não integrados
 
-[QUADRO 5 - Situação de integração de cada material]
+[QUADRO 4 - Situação de integração de cada material]
 | Disciplina | Material | Integrado? | Como |
 |---|---|---|---|
 | Front End | Aplicativo React | Sim | Importa as ordens de serviço do RPA e chama o assistente pela API |
@@ -149,7 +153,7 @@ O roadmap é conservador. Hoje a solução usa apenas métodos clássicos, que r
 
 ### 2.10.2 Princípios de governança de IA aplicados
 
-[QUADRO 6 - Princípios e como foram aplicados]
+[QUADRO 5 - Princípios e como foram aplicados]
 | Princípio | Aplicação no projeto |
 |---|---|
 | Transparência e explicabilidade | Escore de prioridade com o motivo de cada ponto. O assistente mostra a fonte da resposta |
@@ -161,7 +165,7 @@ O roadmap é conservador. Hoje a solução usa apenas métodos clássicos, que r
 
 ### 2.10.3 Riscos e controles
 
-[QUADRO 7 - Matriz de riscos]
+[QUADRO 6 - Matriz de riscos]
 | Risco | Probabilidade | Impacto | Controle |
 |---|---|---|---|
 | Falso positivo da câmera (sombra, mancha) | Média | Baixo | Confirmação por sensor ou por mais de um quadro. Revisão humana |
@@ -173,22 +177,20 @@ O roadmap é conservador. Hoje a solução usa apenas métodos clássicos, que r
 
 ### 2.10.4 Indicadores para Business Analytics
 
-A prefeitura poderia acompanhar a solução com os seguintes indicadores:
-
-- tempo médio entre a detecção e o reparo, por prioridade e por subprefeitura;
-- percentual de buracos encontrados sem reclamação do cidadão;
-- taxa de falsos positivos confirmada nas vistorias, para medir a precisão real da câmera;
-- cobertura das rotas: percentual de ruas percorridas por semana;
-- diferença do tempo de atendimento entre bairros, para acompanhar a equidade;
-- chamados duplicados evitados pelo agrupamento do robô.
+A prefeitura poderia acompanhar a solução pelo tempo médio entre a detecção e o reparo (por prioridade e por subprefeitura), pelo percentual de buracos encontrados sem reclamação do cidadão, pela taxa de falsos positivos confirmada nas vistorias, pela cobertura das rotas (ruas percorridas por semana), pela diferença do tempo de atendimento entre bairros, para acompanhar a equidade, e pelos chamados duplicados evitados pelo agrupamento do robô.
 
 # 3 CONCLUSÃO
 
-⬜ ESTA SEÇÃO DEVE SER ESCRITA PELO GRUPO, COM AS PRÓPRIAS PALAVRAS (o professor avisou que, se for feita com IA, a nota do documento cai pela metade). Sugestão de pontos para comentar: o que vocês aprenderam integrando as disciplinas, o que funcionou melhor, o que ficou faltando (por exemplo, a integração em tempo real e o hardware físico), se a ideia seria viável numa prefeitura de verdade e o que fariam em seguida.
+Durante todo o desenvolvimento do Cidade em Ordem, conseguimos entender melhor como resolver problemas reais sem depender de chamados vindos da população, que dificilmente pararia o seu dia para tirar fotos de vias esburacadas. Usando as tecnologias que aprendemos, conseguiríamos otimizar essas vistorias nas ruas. Foi interessante integrar todas as matérias, fazendo com que cada uma ajudasse a identificar buracos nas ruas, definir a prioridade de cada um e gerar ordens de serviço. Acreditamos que uma das partes mais importantes foi ver como essas matérias podem se unir e trabalhar juntas para facilitar a manutenção das ruas, melhorando o atendimento à população.
+
+Também percebemos que ainda existem pontos que podem ser melhorados, principalmente na integração em tempo real e nos testes com equipamentos físicos. Mesmo assim, acreditamos que a solução tem potencial para ser utilizada pela prefeitura. No geral, o projeto foi uma experiência importante para colocar nossos conhecimentos em prática e perceber que desenvolver uma solução com IA não envolve apenas programação, mas também ideias que nos ajudam a pensar na segurança, na organização e, principalmente, nas pessoas que serão beneficiadas.
 
 # 4 LINKS
 
-- Vídeo de demonstração (YouTube, não listado): ⬜
+- Vídeo de integração (Governança, YouTube, não listado): https://youtu.be/Gq5Ohxh--7Q
+- Vídeo de Visão Computacional: https://youtu.be/sp4HV_C52s8
+- Vídeo de Processamento de Linguagem Natural: https://youtu.be/ElWzSAD4eRU
+- Vídeo de Generative AI: https://www.youtube.com/watch?v=jW51bMjhIdI
 - Repositório GitHub: https://github.com/joaop-n12/cidade-em-ordem
 
 # REFERÊNCIAS

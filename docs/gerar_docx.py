@@ -112,10 +112,15 @@ def capa_abnt(doc, meta, quadros):
     centro(doc, meta["local"].upper(), antes=150)
     centro(doc, meta["ano"])
     quebra(doc)
-    # lista de quadros e figuras
-    centro(doc, "LISTA DE QUADROS E FIGURAS", True)
-    for q in quadros:
-        p = doc.add_paragraph(q); p.paragraph_format.first_line_indent = Cm(0)
+    # listas de figuras e de quadros (na mesma página)
+    for tipo, titulo in (("FIGURA", "LISTA DE FIGURAS"), ("QUADRO", "LISTA DE QUADROS")):
+        itens = [q for q in quadros if q.startswith(tipo)]
+        if not itens:
+            continue
+        centro(doc, titulo, True, antes=0 if tipo == "FIGURA" else 24)
+        for q in itens:
+            p = doc.add_paragraph(q[0] + q[1:len(tipo)].lower() + q[len(tipo):])  # "Figura 1 – ..."
+            p.paragraph_format.first_line_indent = Cm(0)
     quebra(doc)
     centro(doc, "SUMÁRIO", True)
     p = doc.add_paragraph(); p.paragraph_format.first_line_indent = Cm(0)
@@ -238,7 +243,7 @@ def converter(md_path, docx_path, abnt):
         ini = next(k for k, l in enumerate(linhas) if l.startswith("# "))
         fim = next((k for k, l in enumerate(linhas) if k > ini and l.startswith("## ")), ini + 1)
         linhas = linhas[:ini] + linhas[fim:]
-    i = 0
+    i = 0; em_referencias = False
     while i < len(linhas):
         l = linhas[i]
         if l.startswith("```"):
@@ -257,7 +262,7 @@ def converter(md_path, docx_path, abnt):
             m = re.match(r"!\[([^\]]*)\]\(([^)]+)\)", l.strip())
             img = md_path.parent / m.group(2)
             if img.exists():
-                from PIL import Image as _I; doc.add_picture(str(img), width=Cm(9 if _I.open(img).width < 1000 else 13))
+                from PIL import Image as _I; doc.add_picture(str(img), width=Cm(9 if _I.open(img).width < 1000 else (10 if abnt else 13)))
                 doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
             cap = doc.add_paragraph(); cap.alignment = WD_ALIGN_PARAGRAPH.CENTER; cap.paragraph_format.first_line_indent = Cm(0)
             r = cap.add_run(m.group(1) if img.exists() else f"[inserir imagem: {m.group(2)}]"); r.font.size = Pt(10)
@@ -267,8 +272,7 @@ def converter(md_path, docx_path, abnt):
         elif l.startswith("#"):
             nivel = min(len(l) - len(l.lstrip("#")), 3)
             titulo = re.sub(r"\*+|`", "", l.lstrip("# ").strip())  # títulos sem marcas de negrito/itálico
-            if abnt and nivel == 1:
-                quebra(doc) if titulo not in ("1 INTRODUÇÃO",) else None
+            em_referencias = abnt and titulo == "REFERÊNCIAS"
             doc.add_heading(titulo.upper() if nivel == 1 else titulo, level=nivel)
         elif re.match(r"^\s*[-*] ", l):
             texto, i = juntar(linhas, i, re.sub(r"^\s*[-*] ", "", l), so_indentadas=True)
@@ -288,6 +292,9 @@ def converter(md_path, docx_path, abnt):
         elif l.strip() and not l.startswith("---"):
             texto, i = juntar(linhas, i, l.strip())
             p = doc.add_paragraph(); p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+            if em_referencias:  # ABNT: referências em espaço simples, alinhadas à esquerda
+                pf = p.paragraph_format; pf.alignment = WD_ALIGN_PARAGRAPH.LEFT
+                pf.first_line_indent = Cm(0); pf.line_spacing = 1.0; pf.space_after = Pt(12)
             texto_rico(p, texto)
         i += 1
     # numeração de página no canto superior direito (ABNT)
