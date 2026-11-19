@@ -44,20 +44,25 @@ def campo(paragrafo, instrucao):
             t = OxmlElement("w:t"); t.text = texto; run._r.append(t)
 
 
-def estilo_base(doc):
+def estilo_base(doc, abnt=True):
+    """ABNT (Governança): Arial 12, espaçamento 1,5. Demais relatórios: Arial 11, 1,15 (mais compactos)."""
+    tam_txt, esp = (12, 1.5) if abnt else (11, 1.15)
     st = doc.styles["Normal"]
-    st.font.name = "Arial"; st.font.size = Pt(12)
+    st.font.name = "Arial"; st.font.size = Pt(tam_txt)
     st.element.rPr.rFonts.set(qn("w:eastAsia"), "Arial")
     pf = st.paragraph_format
-    pf.line_spacing = 1.5; pf.space_after = Pt(6); pf.first_line_indent = Cm(1.25)
+    pf.line_spacing = esp; pf.space_after = Pt(6 if abnt else 4); pf.first_line_indent = Cm(1.25 if abnt else 0)
     for nome, tam in (("Heading 1", 12), ("Heading 2", 12), ("Heading 3", 12)):
         h = doc.styles[nome]
         h.font.name = "Arial"; h.font.size = Pt(tam); h.font.bold = True; h.font.color.rgb = None
         h.element.rPr.rFonts.set(qn("w:eastAsia"), "Arial")
         h.paragraph_format.first_line_indent = Cm(0); h.paragraph_format.space_before = Pt(12)
-        h.paragraph_format.line_spacing = 1.5
+        h.paragraph_format.line_spacing = esp
+        if not abnt:
+            h.paragraph_format.space_before = Pt(8)
     for s in doc.sections:
-        s.top_margin = Cm(3); s.left_margin = Cm(3); s.bottom_margin = Cm(2); s.right_margin = Cm(2)
+        s.top_margin = Cm(3 if abnt else 2); s.left_margin = Cm(3 if abnt else 2.5)
+        s.bottom_margin = Cm(2); s.right_margin = Cm(2)
 
 
 def texto_rico(paragrafo, texto):
@@ -152,7 +157,7 @@ def converter(md_path, docx_path, abnt):
         _, fm, texto = texto.split("---", 2)
         for l in fm.strip().splitlines():
             k, v = l.split(":", 1); meta[k.strip()] = v.strip()
-    doc = Document(); estilo_base(doc)
+    doc = Document(); estilo_base(doc, abnt)
     linhas = texto.strip().splitlines()
     quadros = [l.strip("[] ").replace(" - ", " – ", 1) for l in linhas if re.match(r"\[(QUADRO|FIGURA) \d+", l)]
     if abnt:
@@ -180,7 +185,7 @@ def converter(md_path, docx_path, abnt):
             m = re.match(r"!\[([^\]]*)\]\(([^)]+)\)", l.strip())
             img = md_path.parent / m.group(2)
             if img.exists():
-                doc.add_picture(str(img), width=Cm(15))
+                from PIL import Image as _I; doc.add_picture(str(img), width=Cm(9 if _I.open(img).width < 1000 else 13))
                 doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
             cap = doc.add_paragraph(); cap.alignment = WD_ALIGN_PARAGRAPH.CENTER; cap.paragraph_format.first_line_indent = Cm(0)
             r = cap.add_run(m.group(1) if img.exists() else f"[inserir imagem: {m.group(2)}]"); r.font.size = Pt(10)
