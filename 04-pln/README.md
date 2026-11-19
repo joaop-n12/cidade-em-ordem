@@ -1,10 +1,11 @@
-# Fábrica de Corpus CitizenTech: Cidade em Ordem (NLP)
+# Fábrica de Corpus CitizenTech: Cidade em Ordem (PLN)
 
 **Integrantes:** João Pedro de Souza Nunes (RM567318) · Guilherme Nakamura (RM567460)
 
 Ferramenta que transforma leis e cartilhas públicas sobre calçadas, vias e limpeza urbana em três corpus JSONL
 (texto puro, perguntas e respostas, conversacional) para fine-tuning de um modelo de linguagem pequeno.
-Relatório completo: [RELATORIO_NLP.md](RELATORIO_NLP.md).
+Relatório completo: [RELATORIO_PLN.md](RELATORIO_PLN.md).
+Vídeo de demonstração: https://youtu.be/ElWzSAD4eRU
 
 ## Como executar
 **Colab (recomendado):** abra `fabrica_corpus.ipynb` no Google Colab e use *Executar tudo*. A primeira célula instala

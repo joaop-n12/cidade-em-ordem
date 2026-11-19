@@ -30,3 +30,6 @@ Thumbs.db
 03-visao-computacional/resultados/gradio_*
 03-visao-computacional/video_bruto/
 03-visao-computacional/*.docx
+04-pln/video_bruto/
+04-pln/corpus_interface/
+04-pln/*.docx

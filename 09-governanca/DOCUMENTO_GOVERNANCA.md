@@ -33,7 +33,7 @@ A solução tem quatro camadas: coleta de dados no caminhão (câmera e sensor),
 |---|---|---|---|
 | Câmera (Visão Computacional) | Buracos detectados com confiança e posição | Robô RPA | deteccoes_visao.json |
 | ESP32 (IoT) | Impacto (g), profundidade (cm) e posição | Receptor MQTT e depois robô RPA | MQTT e deteccoes_iot.json |
-| Leis e cartilhas (NLP) | Corpus limpo e anonimizado | Assistente (Generative AI) | corpus_texto.jsonl e corpus_qa.jsonl |
+| Leis e cartilhas (PLN) | Corpus limpo e anonimizado | Assistente (Generative AI) | corpus_texto.jsonl e corpus_qa.jsonl |
 | Robô RPA | Ordens de serviço priorizadas | Front-end e assistente | ordens_servico.json e .xlsx |
 | Front-end | Pergunta do cidadão | Assistente | POST /perguntar |
 
@@ -96,7 +96,7 @@ Foram gerados 287 trechos de texto, 183 pares de pergunta e resposta e 46 diálo
 
 ## 2.6 Generative AI and Advanced Nets
 
-O assistente do cidadão usa RAG (geração aumentada por recuperação) com LangChain. A base de conhecimento é o corpus produzido em NLP. A busca combina vetores (embeddings multilíngues que rodam no próprio computador) e palavras-chave (BM25). Um roteador decide se a pergunta é sobre uma lei, quando usa o RAG, ou sobre o andamento de um buraco numa rua, quando consulta as ordens de serviço geradas pelo robô RPA.
+O assistente do cidadão usa RAG (geração aumentada por recuperação) com LangChain. A base de conhecimento é o corpus produzido em PLN. A busca combina vetores (embeddings multilíngues que rodam no próprio computador) e palavras-chave (BM25). Um roteador decide se a pergunta é sobre uma lei, quando usa o RAG, ou sobre o andamento de um buraco numa rua, quando consulta as ordens de serviço geradas pelo robô RPA.
 
 Antes de qualquer chamada ao modelo, o texto passa por proteções: dados pessoais são mascarados, mensagens de emergência recebem os telefones do SAMU, Bombeiros e Defesa Civil, e perguntas fora do tema são recusadas sem chamar o modelo. Depois da resposta, o sistema confere se os números citados aparecem nos trechos recuperados.
 
@@ -140,7 +140,7 @@ O roadmap é conservador. Hoje a solução usa apenas métodos clássicos, que r
 | Front End | Aplicativo React | Sim | Importa as ordens de serviço do RPA e chama o assistente pela API |
 | IoT | ESP32, MQTT e receptor | Sim | O receptor gera deteccoes_iot.json, lido pelo robô RPA |
 | Visão Computacional | Modelo YOLO11n | Sim | O notebook gera deteccoes_visao.json, lido pelo robô RPA |
-| NLP | Corpus JSONL | Sim | É a base de conhecimento do assistente |
+| PLN | Corpus JSONL | Sim | É a base de conhecimento do assistente |
 | Generative AI | Assistente RAG | Sim | Responde no aplicativo e consulta as ordens do RPA |
 | RPA | Robô de triagem | Sim | Junta câmera e sensor e alimenta o aplicativo e o assistente |
 | Cluster | Simulação de memristor | Não (estudo) | Proposta de uso no ESP32, sem implementação |

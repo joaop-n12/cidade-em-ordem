@@ -23,7 +23,7 @@ RAIZ = Path(__file__).resolve().parents[1]
 RELATORIOS = [
     ("09-governanca/DOCUMENTO_GOVERNANCA.md", "09-governanca/Documento_Governanca_CidadeEmOrdem.docx", True),
     ("02-iot/RELATORIO_IOT.md", "02-iot/Relatorio_IoT_CidadeEmOrdem.docx", False),
-    ("04-nlp/RELATORIO_NLP.md", "04-nlp/Relatorio_NLP_CidadeEmOrdem.docx", False),
+    ("04-pln/RELATORIO_PLN.md", "04-pln/Relatorio_PLN_CidadeEmOrdem.docx", False),
     ("03-visao-computacional/RELATORIO_VISAO.md", "03-visao-computacional/Relatorio_Visao_CidadeEmOrdem.docx", False),
     ("08-computacao-quantica/RELATORIO_QUANTICA.md", "08-computacao-quantica/Relatorio_Quantica_CidadeEmOrdem.docx", False),
     ("05-generative-ai/README.md", "05-generative-ai/Documentacao_GenAI_CidadeEmOrdem.docx", False),
@@ -126,7 +126,7 @@ def capa_abnt(doc, meta, quadros):
 DISCIPLINAS = {
     "02-iot": "Physical Computing, Embedded AI, Robotics & Cognitive IoT",
     "03-visao-computacional": "Visão Computacional",
-    "04-nlp": "Processamento de Linguagem Natural",
+    "04-pln": "Processamento de Linguagem Natural",
     "05-generative-ai": "Generative AI and Advanced Nets",
     "06-rpa": "AI for Robotic Process Automation",
     "07-cluster-memristor": "Cluster Computing, Computação Neuromórfica e Supercomputadores",

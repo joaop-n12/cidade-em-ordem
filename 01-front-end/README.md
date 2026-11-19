@@ -67,4 +67,4 @@ Opcional: para o assistente usar o RAG da pasta `05-generative-ai`, crie um arqu
 - **Visão Computacional e IoT**: as detecções da câmera e do sensor chegam pela tela **Importar detecções**
   (arquivo gerado pelo robô RPA) e aparecem no mapa.
 - **RPA**: gera o `ordens_servico.json` que é importado aqui.
-- **Generative AI / NLP**: o assistente usa os mesmos documentos do corpus e do RAG.
+- **Generative AI / PLN**: o assistente usa os mesmos documentos do corpus e do RAG.

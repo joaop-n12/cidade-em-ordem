@@ -740,6 +740,10 @@ def pipeline_interface(arquivos, texto):
     md += f"| Conversacional | {len(ch)} | {media_tokens(ch, lambda x: ' '.join(m['content'] for m in x['messages']))} | 0 |\n\n"
     md += "### Limpeza e anonimização por documento\n" + "\n".join(
         f"- **{r['fonte']}**: {r['caracteres_brutos']} → {r['caracteres_limpos']} caracteres ({r['reducao_%']}% de ruído removido); mascarados: {r['mascarados'] or 'nenhum'}" for r in rel)
+    if texto and texto.strip():
+        antes = normalizar(limpar_documento({"paginas": [texto]}))
+        depois, _ = anonimizar(antes)
+        md += f"\n\n### Anonimização do texto colado\n**Antes:**\n> {antes}\n\n**Depois:**\n> {depois}"
     md += "\n\n### 5 trechos aleatórios\n" + "\n".join(f"> {c['text'][:300]}... *({c['fonte']})*\n" for c in random.sample(ct, min(5, len(ct))))
     return md, *caminhos
 

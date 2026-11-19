@@ -1,4 +1,4 @@
-"""Base de conhecimento do RAG: corpus limpo e anonimizado gerado na disciplina de NLP."""
+"""Base de conhecimento do RAG: corpus limpo e anonimizado gerado na disciplina de PLN."""
 
 import json
 from pathlib import Path
@@ -9,7 +9,7 @@ from langchain_core.documents import Document
 from langchain_huggingface import HuggingFaceEmbeddings
 
 RAIZ = Path(__file__).resolve().parents[2]
-CORPUS = RAIZ / "04-nlp" / "corpus"
+CORPUS = RAIZ / "04-pln" / "corpus"
 INDICE = Path(__file__).resolve().parents[1] / "indice_faiss"
 
 # Modelo de embeddings multilíngue, gratuito, roda localmente (sem enviar o texto para a nuvem).

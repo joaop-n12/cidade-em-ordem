@@ -33,7 +33,7 @@ lei veio), sem depender do atendimento telefônico.
 | **Arquitetura agêntica (simples)** | Um roteador decide entre a ferramenta `consultar_ordens` (dados vivos do robô RPA) e o RAG (conhecimento estático). Os guardrails agem antes e depois do modelo |
 
 **Não é um chatbot genérico:** a base de conhecimento é o **corpus limpo e anonimizado construído na disciplina de
-NLP** (5 documentos oficiais, 287 trechos e 183 pares de pergunta e resposta revisados), e a ferramenta lê as
+PLN** (5 documentos oficiais, 287 trechos e 183 pares de pergunta e resposta revisados), e a ferramenta lê as
 ordens de serviço reais do robô.
 
 ## 3. Arquitetura e fluxo
@@ -57,7 +57,7 @@ Resposta + fontes + trechos (painel técnico no Gradio)
 
 | Componente | Arquivo | Papel |
 |---|---|---|
-| Base de conhecimento | `assistente/base_conhecimento.py` | Carrega `04-nlp/corpus/*.jsonl`, gera embeddings e o índice FAISS |
+| Base de conhecimento | `assistente/base_conhecimento.py` | Carrega `04-pln/corpus/*.jsonl`, gera embeddings e o índice FAISS |
 | Recuperação híbrida e orquestração | `assistente/rag.py` | Roteador, busca híbrida, prompt, LLM, fallback e verificação |
 | Guardrails | `assistente/guardrails.py` | Mascaramento LGPD, emergência, fora do tema, números sem suporte |
 | Ferramenta | `assistente/ferramentas.py` | Consulta as OS do robô RPA |
@@ -65,7 +65,7 @@ Resposta + fontes + trechos (painel técnico no Gradio)
 | Avaliação | `avaliacao/avaliar.py` | 24 perguntas de teste com métricas |
 
 ## 4. Integração com a solução CitizenTech
-- **NLP → GenAI:** o corpus produzido pela Fábrica de Corpus é a base do RAG. O mesmo corpus serviria para o fine-tuning
+- **PLN → GenAI:** o corpus produzido pela Fábrica de Corpus é a base do RAG. O mesmo corpus serviria para o fine-tuning
   de um modelo local no futuro.
 - **RPA → GenAI:** a ferramenta lê `06-rpa/saida/ordens_servico.json`, gerado a partir das detecções da câmera e do sensor.
 - **GenAI → Front-end:** a tela **Assistente** do app React chama `POST /perguntar` quando `VITE_RAG_URL` está configurada.

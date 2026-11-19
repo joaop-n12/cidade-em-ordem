@@ -13,7 +13,7 @@ com Win + G (Xbox Game Bar). Publique no YouTube como **Não listado**.
 | 2:10–3:00 | Guilherme | Gradio da visão computacional | Enviar foto de buraco, mostrar caixa e confiança. Falar das métricas (mAP) e da divisão sem vazamento |
 | 3:00–3:50 | João | Terminal rodando o robô RPA + planilha Excel | Robô junta câmera e sensor, busca endereço e chuva, gera OS e manda casos fracos para revisão humana |
 | 3:50–4:40 | João | Front-end: importar OS, mapa, detalhe com os motivos da prioridade | O gestor vê por que cada buraco é prioridade |
-| 4:40–5:40 | Guilherme | Assistente: pergunta sobre calçada, status da Rua Catiguá, pergunta com CPF (mascarado), "estou sangrando" | RAG com leis reais (vindas do NLP), ferramenta de status, proteções de privacidade |
+| 4:40–5:40 | Guilherme | Assistente: pergunta sobre calçada, status da Rua Catiguá, pergunta com CPF (mascarado), "estou sangrando" | RAG com leis reais (vindas do PLN), ferramenta de status, proteções de privacidade |
 | 5:40–6:20 | Guilherme | Quadro 5 do documento (integrado ou não) | Memristor e quântica ficaram como estudo. Integração entre módulos feita por arquivos |
 | 6:20–6:50 | João | Quadro de princípios de governança | Explicabilidade, revisão humana, LGPD, equidade entre bairros |
 | 6:50–7:00 | Ambos | Rosto | Encerramento |
@@ -26,7 +26,7 @@ Antes de gravar, deixe tudo aberto: Wokwi, receptor rodando, Colab do Gradio abe
 3. Aba Vídeo: processar `trajeto_simulado.mp4` e mostrar FPS e detecções.
 4. Mostrar rapidamente o `deteccoes_visao.json` e dizer que ele vai para o robô RPA.
 
-## 3. Vídeo de NLP (até 5 min)
+## 3. Vídeo de PLN (até 5 min)
 1. Colab: mostrar a pasta `documentos/` com os 5 arquivos (PDF, HTML, DOCX, TXT).
 2. Abrir a interface Gradio, enviar os arquivos e colar o relato fictício.
 3. Clicar "Gerar corpus", mostrar o relatório (exemplos, tokens, duplicatas) e o antes e depois da anonimização.

@@ -28,7 +28,7 @@ responde com base nas leis.
 │ ESP32 + MPU6050 + │──MQTT────────>│ (06-rpa)                  │                     │ (01-front-end)        │
 │ HC-SR04 (02-iot)  │<─comando LED──│ Receptor + SQLite (02-iot)│                     │        │ POST         │
 └───────────────────┘               └───────────────────────────┘                     │        ▼              │
-                                     Leis e cartilhas → Fábrica de Corpus (04-nlp) ──>│ Assistente RAG        │
+                                     Leis e cartilhas → Fábrica de Corpus (04-pln) ──>│ Assistente RAG        │
                                                                                       │ (05-generative-ai)    │
                                                                                       └──────────────────────┘
  Estudos de evolução: memristor para registrar impactos (07) · otimização quântica de rotas e PQC (08)
@@ -40,7 +40,7 @@ responde com base nas leis.
 | [01-front-end](01-front-end) | Front End & Mobile Development | App React + Vite: login local, cadastro e consulta de ocorrências, mapa, IA de triagem, assistente |
 | [02-iot](02-iot) | Physical Computing, Embedded AI & Cognitive IoT | ESP32 no Wokwi (2 sensores), MQTT, receptor Python, SQLite, relatório |
 | [03-visao-computacional](03-visao-computacional) | Visão Computacional | Notebook YOLO11n (transfer learning), métricas, robustez, FPS, vídeo, Gradio |
-| [04-nlp](04-nlp) | Processamento de Linguagem Natural | Fábrica de Corpus: 5 documentos oficiais → 3 corpus JSONL anonimizados |
+| [04-pln](04-pln) | Processamento de Linguagem Natural | Fábrica de Corpus: 5 documentos oficiais → 3 corpus JSONL anonimizados |
 | [05-generative-ai](05-generative-ai) | Generative AI and Advanced Nets | Assistente RAG híbrido (LangChain), ferramenta de OS, guardrails, Gradio/FastAPI |
 | [06-rpa](06-rpa) | AI for Robotic Process Automation | Robô de ponta a ponta: validação, DBSCAN, APIs, Excel, idempotência, revisão humana |
 | [07-cluster-memristor](07-cluster-memristor) | Cluster, Computação Neuromórfica e Supercomputadores | Simulação de memristor no Falstad para registrar impactos |
@@ -72,4 +72,5 @@ No front-end, entre como **Gestor**, vá em **Importar detecções** e envie `06
 - Vídeo de integração (Governança): ⬜
 - Vídeo de Generative AI: https://www.youtube.com/watch?v=jW51bMjhIdI
 - Vídeo de Visão Computacional: https://youtu.be/sp4HV_C52s8
+- Vídeo de PLN: https://youtu.be/ElWzSAD4eRU
 - Repositório: https://github.com/joaop-n12/cidade-em-ordem

@@ -137,4 +137,4 @@ Cinco exemplos aleatórios de cada corpus aparecem na saída do notebook (seçã
 - Documentos de entrada: `documentos/` (e os links oficiais acima)
 - Corpus: `corpus/corpus_texto.jsonl`, `corpus/corpus_qa.jsonl`, `corpus/corpus_chat.jsonl` e `corpus/estatisticas.json`
 - Log da execução: `corpus/log_execucao.txt`
-- Vídeo (até 5 min, do upload até a geração dos corpus): ⬜ link
+- Vídeo (até 5 min, do upload até a geração dos corpus): https://youtu.be/ElWzSAD4eRU

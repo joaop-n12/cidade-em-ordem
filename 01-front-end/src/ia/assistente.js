@@ -1,7 +1,7 @@
 // Assistente do cidadão (versão embarcada no front-end).
 // Funciona sem internet: busca a resposta mais relevante numa base de
 // conhecimento curta, montada a partir dos mesmos documentos públicos usados
-// no módulo de NLP e no RAG de Generative AI. Quando o RAG completo
+// no módulo de PLN e no RAG de Generative AI. Quando o RAG completo
 // (pasta 05-generative-ai) estiver rodando, o front pode chamá-lo pela URL
 // configurada em VITE_RAG_URL; se a chamada falhar, cai nesta versão local.
 
