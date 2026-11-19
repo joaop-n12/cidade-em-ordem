@@ -25,7 +25,6 @@ RELATORIOS = [
     ("02-iot/RELATORIO_IOT.md", "02-iot/Relatorio_IoT_CidadeEmOrdem.docx", False),
     ("04-nlp/RELATORIO_NLP.md", "04-nlp/Relatorio_NLP_CidadeEmOrdem.docx", False),
     ("03-visao-computacional/RELATORIO_VISAO.md", "03-visao-computacional/Relatorio_Visao_CidadeEmOrdem.docx", False),
-    ("07-cluster-memristor/RELATORIO_MEMRISTOR.md", "07-cluster-memristor/Relatorio_Memristor_CidadeEmOrdem.docx", False),
     ("08-computacao-quantica/RELATORIO_QUANTICA.md", "08-computacao-quantica/Relatorio_Quantica_CidadeEmOrdem.docx", False),
     ("05-generative-ai/README.md", "05-generative-ai/Documentacao_GenAI_CidadeEmOrdem.docx", False),
     ("06-rpa/README.md", "06-rpa/Documentacao_RPA_CidadeEmOrdem.docx", False),
@@ -263,7 +262,7 @@ def converter(md_path, docx_path, abnt):
             r = p.add_run(l.strip("[] ")); r.bold = True; r.font.size = Pt(10)
         elif l.startswith("#"):
             nivel = min(len(l) - len(l.lstrip("#")), 3)
-            titulo = l.lstrip("# ").strip()
+            titulo = re.sub(r"\*+|`", "", l.lstrip("# ").strip())  # títulos sem marcas de negrito/itálico
             if abnt and nivel == 1:
                 quebra(doc) if titulo not in ("1 INTRODUÇÃO",) else None
             doc.add_heading(titulo.upper() if nivel == 1 else titulo, level=nivel)
@@ -292,7 +291,7 @@ def converter(md_path, docx_path, abnt):
         s.different_first_page_header_footer = True  # sem número na capa
         p = s.header.paragraphs[0]; p.alignment = WD_ALIGN_PARAGRAPH.RIGHT; campo(p, "PAGE")
     doc.save(docx_path)
-    print("gerado:", docx_path.relative_to(RAIZ))
+    print("gerado:", Path(docx_path).resolve().relative_to(RAIZ))
 
 
 if __name__ == "__main__":
